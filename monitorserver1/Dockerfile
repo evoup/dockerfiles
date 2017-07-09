@@ -17,7 +17,7 @@ ADD http://apache.fayea.com/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz /sr
 
 RUN sed -i 's/httpredir.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev -y
+RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget -y
 RUN mkdir -p /services/software/ext
 RUN mv /src/php-5.4.45.tar.gz /services/software/
 RUN cd /services/software/ && tar xzf php-5.4.45.tar.gz
@@ -43,7 +43,7 @@ RUN cd /services/software/php-5.4.45/ && './configure' '--prefix=/usr/local/php5
 
 RUN cd /services/software/php-5.4.45/ && make clean && './configure' '--prefix=/usr/local/php5_admin' '--with-layout=GNU' '--with-config-file-scan-dir=/usr/local/php5_admin/etc/php' '--disable-all' '--enable-dom' '--enable-filter' '--enable-hash' '--enable-json' '--with-mcrypt' '--with-curl' '--with-pcre-regex' '--enable-mbstring' '--enable-ctype' '--enable-session' '--with-libxml-dir' '--enable-libxml' '--enable-simplexml' '--enable-pdo' '--with-pdo-mysql=mysqlnd' '--with-mysqli=mysqlnd' '--enable-sysvsem' '--enable-sysvshm' '--enable-memcache' '--enable-fpm' '--enable-pcntl' '--enable-dba' '--enable-dba' '--enable-sysvmsg' '--enable-sysvshm' '--enable-sockets' '--enable-sigchild' '--enable-ftp' '--with-gd' '--enable-gd' '--enable-gd-native-ttf' '--with-jpeg-dir=/usr/local' '--with-png=/usr/local' '--with-ttf' '--with-zlib' '--with-freetype-dir=/usr/local' '--enable-track-vars' '--with-pear=/usr/local/pear' '--enable-xml' '--with-mysql' '--enable-zookeeper' '--with-libzookeeper-dir=/services/software/zookeeper-3.4.6/prefix' && find . -name '*.1' > /tmp/php-1.lst.$$ && tar -cf /tmp/php-1.tar.$$ -T /tmp/php-1.lst.$$ && make clean && tar -xf /tmp/php-1.tar.$$ && rm /tmp/php-1.tar.$$ /tmp/php-1.lst.$$ && make -j$(nproc) && make install
 RUN cp /usr/local/php5_admin/etc/php-fpm.conf.default /usr/local/php5_admin/etc/php-fpm.conf
-
+RUN cd /tmp && wget https://codeload.github.com/evoup/dockerfiles/zip/master -O dockerfiles && unzip dockerfiles && cp dockerfiles-master/monitorserver1/php-fpm /etc/init.d/ && chmod +x /etc/init.d/php-fpm && touch /var/run/php-fpm.pid
 
 
 
