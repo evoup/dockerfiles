@@ -45,6 +45,9 @@ RUN cd /services/software/php-5.4.45/ && make clean && './configure' '--prefix=/
 RUN cp /usr/local/php5_admin/etc/php-fpm.conf.default /usr/local/php5_admin/etc/php-fpm.conf
 RUN cd /tmp && wget https://codeload.github.com/evoup/dockerfiles/zip/master -O dockerfiles && unzip dockerfiles && cp dockerfiles-master/monitorserver1/php-fpm /etc/init.d/ && chmod +x /etc/init.d/php-fpm && touch /var/run/php-fpm.pid
 
+RUN groupadd nobody
+
+#ENTRYPOINT /etc/init.d/php-fpm start
 
 
 
