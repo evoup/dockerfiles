@@ -9,7 +9,8 @@
 #FROM debian:jessie
 FROM ubuntu:16.04
 LABEL maintainer "evoup <evoex123@gmail.com>"
-ADD http://museum.php.net/php5/php-5.4.45.tar.gz /src/php-5.4.45.tar.gz
+#ADD http://museum.php.net/php5/php-5.4.45.tar.gz /src/php-5.4.45.tar.gz
+ADD https://secure.php.net/distributions/php-5.4.45.tar.gz /src/php-5.4.45.tar.gz
 ADD http://pecl.php.net/get/proctitle-0.1.2.tgz /src/proctitle-0.1.2.tgz
 ADD http://pecl.php.net/get/memcache-2.2.7.tgz /src/memcache-2.2.7.tgz
 ADD http://alpha.gnu.org/pub/gnu/autoconf/autoconf-2.59d.tar.gz /src/autoconf-2.59d.tar.gz
