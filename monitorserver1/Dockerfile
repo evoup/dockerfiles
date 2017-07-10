@@ -13,7 +13,7 @@ ADD http://museum.php.net/php5/php-5.4.45.tar.gz /src/php-5.4.45.tar.gz
 ADD http://pecl.php.net/get/proctitle-0.1.2.tgz /src/proctitle-0.1.2.tgz
 ADD http://pecl.php.net/get/memcache-2.2.7.tgz /src/memcache-2.2.7.tgz
 ADD http://alpha.gnu.org/pub/gnu/autoconf/autoconf-2.59d.tar.gz /src/autoconf-2.59d.tar.gz
-ADD http://apache.fayea.com/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz /src/zookeeper-3.4.6.tar.gz
+ADD http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz /src/zookeeper-3.4.6.tar.gz
 
 RUN sed -i 's/httpredir.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN apt-get update
