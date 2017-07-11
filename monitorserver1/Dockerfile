@@ -56,6 +56,7 @@ RUN cd /tmp && wget https://codeload.github.com/evoup/dockerfiles/zip/master -O 
 RUN groupadd nobody
 ADD php_fcgi_params.conf /etc/nginx/php_fcgi_params.conf 
 ADD default /etc/nginx/sites-available/default
+RUN echo "\n\n\nsecurity.limit_extensions = .php .php3 .php4 .php5 .m\n" >> /usr/local/php5_admin/etc/php-fpm.conf
 
 #ENTRYPOINT /etc/init.d/php-fpm start
 
