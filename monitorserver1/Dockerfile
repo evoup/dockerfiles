@@ -51,11 +51,12 @@ RUN cd /services/software/php-5.4.45/ && './configure' '--prefix=/usr/local/php5
 
 RUN cd /services/software/php-5.4.45/ && make clean && './configure' '--prefix=/usr/local/php5_admin' '--with-layout=GNU' '--with-config-file-scan-dir=/usr/local/php5_admin/etc/php' '--disable-all' '--enable-dom' '--enable-filter' '--enable-hash' '--enable-json' '--with-mcrypt' '--with-curl' '--with-pcre-regex' '--enable-mbstring' '--enable-ctype' '--enable-session' '--with-libxml-dir' '--enable-libxml' '--enable-simplexml' '--enable-pdo' '--with-pdo-mysql=mysqlnd' '--with-mysqli=mysqlnd' '--enable-sysvsem' '--enable-sysvshm' '--enable-memcache' '--enable-fpm' '--enable-pcntl' '--enable-dba' '--enable-dba' '--enable-sysvmsg' '--enable-sysvshm' '--enable-sockets' '--enable-sigchild' '--enable-ftp' '--with-gd' '--enable-gd' '--enable-gd-native-ttf' '--with-jpeg-dir=/usr/local' '--with-png=/usr/local' '--with-ttf' '--with-zlib' '--with-freetype-dir=/usr/local' '--enable-track-vars' '--with-pear=/usr/local/pear' '--enable-xml' '--with-mysql' '--enable-zookeeper' '--with-libzookeeper-dir=/services/software/zookeeper-3.4.6/prefix' && find . -name '*.1' > /tmp/php-1.lst.$$ && tar -cf /tmp/php-1.tar.$$ -T /tmp/php-1.lst.$$ && make clean && tar -xf /tmp/php-1.tar.$$ && rm /tmp/php-1.tar.$$ /tmp/php-1.lst.$$ && make -j$(nproc) && make install
 RUN cp /usr/local/php5_admin/etc/php-fpm.conf.default /usr/local/php5_admin/etc/php-fpm.conf
-RUN cd /tmp && wget https://codeload.github.com/evoup/dockerfiles/zip/master -O dockerfiles && unzip dockerfiles && cp dockerfiles-master/monitorserver1/php-fpm /etc/init.d/ && chmod +x /etc/init.d/php-fpm && touch /var/run/php-fpm.pid
+ADD files/php-fpm /etc/init.d/php-fpm
+RUN chmod +x /etc/init.d/php-fpm && touch /var/run/php-fpm.pid
 
 RUN groupadd nobody
-ADD php_fcgi_params.conf /etc/nginx/php_fcgi_params.conf 
-ADD default /etc/nginx/sites-available/default
+ADD files/php_fcgi_params.conf /etc/nginx/php_fcgi_params.conf 
+ADD files/default /etc/nginx/sites-available/default
 RUN echo "\n\n\nsecurity.limit_extensions = .php .php3 .php4 .php5 .m\n" >> /usr/local/php5_admin/etc/php-fpm.conf
 
 #ENTRYPOINT /etc/init.d/php-fpm start
