@@ -59,6 +59,7 @@ ADD files/php_fcgi_params.conf /etc/nginx/php_fcgi_params.conf
 ADD files/default /etc/nginx/sites-available/default
 RUN echo "\n\n\nsecurity.limit_extensions = .php .php3 .php4 .php5 .m\n" >> /usr/local/php5_admin/etc/php-fpm.conf
 RUN cd /var/www/html && git clone git@github.com:evoup/monitor_pass.git 
+RUN cd /var/www/html && wget https://codeload.github.com/evoup/monitor_pass/zip/master -O monitor_pass.zip && unzip monitor_pass.zip && mv monitor_pass-master monitor_pass
 
 #ENTRYPOINT /etc/init.d/php-fpm start
 
