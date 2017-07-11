@@ -48,7 +48,7 @@ server {
         location ~ ^/mmsapi1.0/.+$ {
             rewrite ^/mmsapi1.0/.+$  /index.m  break;
             include /etc/nginx/php_fcgi_params.conf;
-            root /tmp/monitor_api/;
+            root /var/www/html/monitor_api/;
             fastcgi_index   index.m;
             fastcgi_pass 127.0.0.1:9000;
 	}
