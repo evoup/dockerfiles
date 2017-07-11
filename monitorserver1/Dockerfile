@@ -58,6 +58,7 @@ RUN groupadd nobody
 ADD files/php_fcgi_params.conf /etc/nginx/php_fcgi_params.conf 
 ADD files/default /etc/nginx/sites-available/default
 RUN echo "\n\n\nsecurity.limit_extensions = .php .php3 .php4 .php5 .m\n" >> /usr/local/php5_admin/etc/php-fpm.conf
+RUN cd /var/www/html && git clone git@github.com:evoup/monitor_pass.git 
 
 #ENTRYPOINT /etc/init.d/php-fpm start
 
