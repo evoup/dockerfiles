@@ -1,6 +1,6 @@
 # Run hadoop in a container
 #
-# docker run -it \
+# docker run -d \
 #            --hostname namenode1 
 #            --name namenode1 
 #            --ip=172.18.0.30 --net=b0 
