@@ -6,8 +6,9 @@
 #            evoup/cdh-hadoop-namenode
 
 # Base docker image
+
+
 #FROM debian:jessie
-           --
 FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
 ADD CentOS-Base.repo /etc/yum.repos.d/ 
