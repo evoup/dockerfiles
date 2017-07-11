@@ -62,10 +62,12 @@ RUN cd /var/www/html && wget https://codeload.github.com/evoup/monitor_pass/zip/
 RUN mv /var/www/html/monitor_pass/monitor_ui /var/www/html/
 
 EXPOSE 80
-CMD /etc/init.d/php-fpm start
-CMD /etc/init.d/nginx start
+#CMD ["/etc/init.d/php-fpm start"]
+#CMD ["/etc/init.d/nginx start"]
+ADD files/start.sh /start.sh
+RUN chmod 755 start.sh
+CMD["./start.sh"]
 
-#ENTRYPOINT /etc/init.d/php-fpm start
 
 
 
