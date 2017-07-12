@@ -1,15 +1,10 @@
 # Run hadoop in a container
 #
-# docker run -d \
-#            --hostname namenode1 
-#            --name namenode1 
-#            --ip=172.18.0.30 --net=b0 
-#            evoup/cdh-hadoop-namenode
+#docker run --name namenode_1 -p2203:22 -ti -d --ip 172.18.0.40 --net b0 --hostname namenode_1 hadoop
 
 # Base docker image
 
 
-#FROM debian:jessie
 FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
 ADD CentOS-Base.repo /etc/yum.repos.d/ 
@@ -35,8 +30,11 @@ RUN yum -y clean all
 RUN yum -y install zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
 RUN yum -y install hadoop-yarn-resourcemanager
 RUN yum -y install hadoop-hdfs-namenode
+RUN service zookeeper-server init
+RUN service zookeeper-server init --myid=1
 
 
 
-
-CMD /usr/sbin/sshd -D
+ADD files/start.sh /start.sh
+RUN chmod +x /start.sh
+CMD ["/start.sh"] 
