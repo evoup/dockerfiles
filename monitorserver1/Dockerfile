@@ -1,7 +1,7 @@
 # Run monitorserver1 in a container
 # (first create network: docker network create --subnet=172.18.0.0/16 b0)
-# docker run --name monitorserver_1 -p8003:80 -d --ip 172.18.0.30 --net b0 --hostname monitorserver_1 monitorserver
-# docker run --name monitorserver_2 -p8004:80 -d --ip 172.18.0.31 --net b0 --hostname monitorserver_2 monitorserver
+# docker run --name monitorserver_1 -p8003:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver_1 monitorserver1
+# docker run --name monitorserver_2 -p8004:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver_2 monitorserver1
 
 # Base docker image
 #FROM debian:jessie

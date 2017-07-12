@@ -17,6 +17,7 @@ RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget
 
 RUN cd /etc/yum.repos.d/ && wget https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo
+RUN yum -u update
 
 RUN echo 'root:centos' |chpasswd
 RUN service sshd start
@@ -29,4 +30,13 @@ ADD files/.bashrc /root/.bashrc
 ADD files/.bash_profile /root/.bash_profile
 
 EXPOSE 22
+
+RUN yum -y clean all
+RUN yum -y install zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
+RUN yum -y install hadoop-yarn-resourcemanager
+RUN yum -y install hadoop-hdfs-namenode
+
+
+
+
 CMD /usr/sbin/sshd -D
