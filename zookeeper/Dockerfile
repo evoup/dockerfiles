@@ -1,6 +1,6 @@
-# Run hadoop in a container
+# Run zookeeper in a container
 #
-#docker run --name namenode_1 -p2203:22 -ti -d --ip 172.18.0.40 --net b0 --hostname namenode_1 hadoop 1
+#docker run --name zk_1 -p2203:22 -ti -d --ip 172.18.0.50 --net b0 --hostname zk_1 zk 1
 #(which last 1 is zookeeper`s myid, we can change it for our purpose.)
 
 # Base docker image
@@ -25,7 +25,7 @@ ADD files/bashrc /etc/bashrc
 ADD files/.bashrc /root/.bashrc
 ADD files/.bash_profile /root/.bash_profile
 
-EXPOSE 22
+EXPOSE 22 2181 2888 3888
 
 RUN yum -y clean all
 RUN yum -y install java-1.7.0-openjdk zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
