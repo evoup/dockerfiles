@@ -1,9 +1,7 @@
 #!/bin/sh
 
 
-#service zookeeper-server init --force --myid="$@"
-#service zookeeper-server init
-#service zookeeper-server start
+cat /tmp/hosts >> /etc/hosts
 
 /usr/sbin/sshd -D
 
