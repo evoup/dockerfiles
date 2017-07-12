@@ -1,6 +1,6 @@
 # Run hadoop in a container
 #
-#docker run --name namenode1 -p2206:22 -ti -d --ip 172.18.0.40 --net b0 --hostname namenode1 hadoop
+#docker run --name namenode1 -p2206:22 -ti -d --ip 172.18.0.53 --net b0 --hostname namenode1 hadoop-namenode
 
 # Base docker image
 
@@ -28,8 +28,8 @@ EXPOSE 22
 
 RUN yum -y clean all
 RUN yum -y install java-1.7.0-openjdk
-#RUN yum -y install hadoop-yarn-resourcemanager
-#RUN yum -y install hadoop-hdfs-namenode
+RUN yum -y install hadoop-yarn-resourcemanager
+RUN yum -y install hadoop-hdfs-namenode
 
 
 
