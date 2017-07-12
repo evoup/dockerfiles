@@ -1,6 +1,7 @@
 # Run hadoop in a container
 #
-#docker run --name namenode_1 -p2203:22 -ti -d --ip 172.18.0.40 --net b0 --hostname namenode_1 hadoop
+#docker run --name namenode_1 -p2203:22 -ti -d --ip 172.18.0.40 --net b0 --hostname namenode_1 hadoop 1
+#(which last 1 is zookeeper`s myid, we can change it for our purpose.)
 
 # Base docker image
 
@@ -12,7 +13,7 @@ RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget
 
 RUN cd /etc/yum.repos.d/ && wget https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo
-RUN yum -u update
+RUN yum -y update
 
 RUN echo 'root:centos' |chpasswd
 RUN service sshd start
@@ -30,11 +31,11 @@ RUN yum -y clean all
 RUN yum -y install zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
 RUN yum -y install hadoop-yarn-resourcemanager
 RUN yum -y install hadoop-hdfs-namenode
-RUN service zookeeper-server init
-RUN service zookeeper-server init --myid=1
 
 
 
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh
-CMD ["/start.sh"] 
+#CMD ["/start.sh"] 
+ENTRYPOINT ["/start.sh"]
+CMD []
