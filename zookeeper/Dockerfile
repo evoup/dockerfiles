@@ -1,6 +1,6 @@
 # Run zookeeper in a container
 #
-#docker run --name zk1 -p2203:22 -ti -d --ip 172.18.0.50 --net b0 --hostname zk1 zk 1
+#docker run --name zk1 -p2203:22 -ti -d --ip 172.18.0.50 --net b0 --hostname zk1 evoup/zookeeper 1
 #(which last 1 is zookeeper`s myid, we can change it for our purpose.)
 
 # Base docker image
