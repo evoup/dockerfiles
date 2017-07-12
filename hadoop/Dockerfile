@@ -28,9 +28,9 @@ ADD files/.bash_profile /root/.bash_profile
 EXPOSE 22
 
 RUN yum -y clean all
-RUN yum -y install zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
-RUN yum -y install hadoop-yarn-resourcemanager
-RUN yum -y install hadoop-hdfs-namenode
+RUN yum -y install java-1.7.0-openjdk zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
+#RUN yum -y install hadoop-yarn-resourcemanager
+#RUN yum -y install hadoop-hdfs-namenode
 
 
 
