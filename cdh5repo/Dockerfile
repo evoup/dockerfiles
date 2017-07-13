@@ -1,7 +1,7 @@
 # Run cdh5repo httpserver in a container
 #withoutproxy: docker build -t evoup/cdh5repo . 
 #to use proxy: docker build -t evoup/cdh5repo --build-arg HTTP_PROXY=172.18.0.1:8123 --build-arg HTTPS_PROXY=172.18.0.1:8123 .
-#docker run --name cdh5repo evoup/cdh5repo
+#docker run -ti -d --ip 172.18.0.49 --net b0 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
  
 #(after build, docker exec -it cdh5repo /bin/bash
 #then type sh: 
