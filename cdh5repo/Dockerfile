@@ -1,7 +1,6 @@
 # Run cdh5repo httpserver in a container
 #withoutproxy: docker build -t evoup/cdh5repo . 
 #to use proxy: docker build -t evoup/cdh5repo --build-arg HTTP_PROXY=172.18.0.1:8123 --build-arg HTTPS_PROXY=172.18.0.1:8123 .
-#docker run -ti -d --ip 172.18.0.49 --net b0 -v /home/evoup/project/dockerRelative:/var/www/html/ -p 8003:80 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
  
 #(after build, docker exec -it cdh5repo /bin/bash
 #then type sh: 
@@ -9,9 +8,13 @@
 # $yum -y update
 # $cd /var/www/html
 # $reposync -r cloudera-cdh5 
+#[### this version of nginx web dir is /usr/share/nginx/html/###]
 # > [Put all the RPMs into a directory served by your web server, such as /var/www/html/cdh/5/RPMS/noarch/ (or x86_64 or i386 instead of noarch). The directory structure 5/RPMS/noarch is required. Make sure you can remotely access the files in the directory using HTTP, using a URL similar to http://<yourwebserver>/cdh/5/RPMS/).]
-# cd /var/www/html/ 
+#On your web server, issue the following command from the 5/ subdirectory of your RPM directory:
+# $createrepo .
 #)
+#docker run -ti -d --ip 172.18.0.49 --net b0 -v /home/evoup/project/dockerRelative:/var/www/html/ -p 8003:80 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
+#while building hadoop image, it will visit host`s 8003 port to fetch cdh package, and the speed is so fast:)
 
 # Base docker image
 
