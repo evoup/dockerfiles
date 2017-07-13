@@ -31,6 +31,7 @@ RUN yum -y clean all
 RUN yum update -y libselinux
 
 # passwordless ssh
+RUN rm /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key
 RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
 RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
 RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
