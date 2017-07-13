@@ -24,8 +24,8 @@ RUN yum -y install openssh-server openssh-clients wget epel-release
 RUN yum -y update
 RUN yum -y install nginx wget 
 RUN cd /etc/yum.repo.d/ && wget https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo -O cloudera-cdh5.repo 
-RUN yum -y install yum-utils createrepo
 RUN yum -y update 
+RUN yum -y install yum-utils createrepo
 
 EXPOSE 80
 
