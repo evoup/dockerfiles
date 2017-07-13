@@ -32,5 +32,5 @@ EXPOSE 80
 
 ADD files/start.sh /tmp/start.sh
 RUN chmod +x /tmp/start.sh
-ENTRYPOINT ["/tmp/start.sh"]
-CMD []
+CMD ["/tmp/start.sh"]
+
