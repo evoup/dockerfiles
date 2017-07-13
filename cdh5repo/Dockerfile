@@ -19,7 +19,7 @@ FROM centos:6.9
 RUN yum -y clean all
 RUN yum -y update
 LABEL maintainer "evoup <evoex123@gmail.com>"
-ADD CentOS-Base.repo /etc/yum.repos.d/ 
+#ADD CentOS-Base.repo /etc/yum.repos.d/ 
 RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget epel-release
 RUN yum -y update
