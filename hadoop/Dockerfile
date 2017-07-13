@@ -50,6 +50,8 @@ RUN echo "UsePAM no" >> /etc/ssh/sshd_config
 RUN echo "Port 2122" >> /etc/ssh/sshd_config 
 # starting ssh on port 2122 in order to support --net=host
 
+ADD RPM-GPG-KEY-cloudera /tmp/RPM-GPG-KEY-cloudera
+RUN rpm --import /tmp/RPM-GPG-KEY-cloudera
 
 
 RUN yum -y install java-1.7.0-openjdk
