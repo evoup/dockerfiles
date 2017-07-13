@@ -12,7 +12,8 @@ RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget epel-release
 RUN yum -y update
 
-RUN cd /etc/yum.repos.d/ && wget https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo
+#RUN cd /etc/yum.repos.d/ && wget https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo
+ADD cloudera-cdh5.repo /etc/yum.repos.d/cloudera-cdh5.repo 
 RUN yum -y update
 
 RUN echo 'root:centos' |chpasswd
