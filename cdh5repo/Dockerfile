@@ -6,6 +6,7 @@
 #(after build, docker exec -it cdh5repo /bin/bash
 #then type sh: 
 # $export all_proxy=xxx.xxx.xxx.xxx:8123
+# $yum clean all
 # $yum -y update
 # $cd /var/www/html
 # $reposync -r cloudera-cdh5 
