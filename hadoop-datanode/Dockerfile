@@ -55,7 +55,7 @@ ADD RPM-GPG-KEY-cloudera /tmp/RPM-GPG-KEY-cloudera
 RUN rpm --import /tmp/RPM-GPG-KEY-cloudera
 
 
-RUN yum -y install java-1.7.0-openjdk
+RUN yum -y install java-1.7.0-openjdk java-1.7.0-openjdk-devel 
 RUN yum -y install hadoop-yarn-nodemanager hadoop-hdfs-datanode hadoop-mapreduce
 
 
