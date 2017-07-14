@@ -1,6 +1,6 @@
 # Run hadoop in a container
 #
-#docker run --name namenode1 -p2206:22 -ti -d --ip 172.18.0.53 --net b0 --hostname namenode1 evoup/hadoop-namenode
+#docker run --privileged=true --name namenode1 -p2206:22 -ti -d --ip 172.18.0.53 --net b0 --hostname namenode1 evoup/hadoop-namenode
 
 # Base docker image
 
