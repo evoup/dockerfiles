@@ -9,7 +9,7 @@ FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
 ADD CentOS-Base.repo /etc/yum.repos.d/ 
 RUN yum -y update
-RUN yum -y install openssh-server openssh-clients wget epel-release
+RUN yum -y install openssh-server openssh-clients wget epel-release sudo
 RUN yum -y update
 
 #RUN cd /etc/yum.repos.d/ && wget https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo
