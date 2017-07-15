@@ -20,6 +20,6 @@
 <configuration>
   <property>
      <name>dfs.namenode.name.dir</name>
-     <value>file:///var/lib/hadoop-hdfs/cache/hdfs/dfs/name</value>
+	 <value>file:///data/1/dfs/nn,file:///nfsmount/dfs/nn</value>
   </property>
 </configuration>
