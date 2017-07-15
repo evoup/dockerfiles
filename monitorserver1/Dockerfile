@@ -17,7 +17,7 @@ LABEL maintainer "evoup <evoex123@gmail.com>"
 #RUN sed -i 's/httpredir.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget unzip libnet-ifconfig-wrapper-perl nginx lsof netutils-syslogd -y
+RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget unzip libnet-ifconfig-wrapper-perl nginx lsof inetutils-syslogd -y
 RUN mkdir -p /services/software/ext
 RUN wget https://secure.php.net/distributions/php-5.4.45.tar.gz -O /services/software/php-5.4.45.tar.gz
 RUN wget http://pecl.php.net/get/proctitle-0.1.2.tgz -O /services/software/ext/proctitle-0.1.2.tgz
