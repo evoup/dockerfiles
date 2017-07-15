@@ -18,8 +18,12 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <configuration>
-  <property>
-     <name>dfs.namenode.name.dir</name>
-	 <value>file:///data/1/dfs/nn,file:///nfsmount/dfs/nn</value>
-  </property>
+	<property>
+		<name>dfs.permissions.superusergroup</name>
+		<value>hadoop</value>
+	</property>
+	<property>
+		<name>dfs.namenode.name.dir</name>
+		<value>file:///data/1/dfs/nn,file:///nfsmount/dfs/nn</value>
+	</property>
 </configuration>
