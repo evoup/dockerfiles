@@ -1,7 +1,7 @@
 # Run monitorserver1 in a container
 # (first create network: docker network create --subnet=172.18.0.0/16 b0)
-# docker run --name monitorserver1 -p8004:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver1 evoup/monitorserver
-# docker run --name monitorserver2 -p8005:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver2 evoup/monitorserver
+# docker run --name monitorserver1 --privileged=true -p8004:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver1 evoup/monitorserver
+# docker run --name monitorserver2 --privileged=true -p8005:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver2 evoup/monitorserver
 
 # Base docker image
 #FROM debian:jessie
@@ -17,11 +17,12 @@ LABEL maintainer "evoup <evoex123@gmail.com>"
 #RUN sed -i 's/httpredir.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget unzip libnet-ifconfig-wrapper-perl nginx -y
+RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget unzip libnet-ifconfig-wrapper-perl nginx lsof inetutils-syslogd -y
 RUN mkdir -p /services/software/ext
 RUN wget https://secure.php.net/distributions/php-5.4.45.tar.gz -O /services/software/php-5.4.45.tar.gz
 RUN wget http://pecl.php.net/get/proctitle-0.1.2.tgz -O /services/software/ext/proctitle-0.1.2.tgz
 RUN wget http://pecl.php.net/get/memcache-2.2.7.tgz -O /services/software/ext/memcache-2.2.7.tgz
+RUN wget http://pecl.php.net/get/zookeeper-0.4.0.tgz -O /services/software/ext/zookeeper-0.4.0.tgz
 RUN wget http://alpha.gnu.org/pub/gnu/autoconf/autoconf-2.59d.tar.gz -O /services/software/autoconf-2.59d.tar.gz
 RUN wget http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz -O /services/software/zookeeper-3.4.6.tar.gz
 
@@ -37,9 +38,11 @@ RUN cp -r /services/software/ext/memcache-2.2.7 /services/software/php-5.4.45/ex
 RUN cd /services/software && tar xzf autoconf-2.59d.tar.gz
 RUN cd /services/software/autoconf-2.59d/ && ./configure && make && make install
 RUN autoconf --version
-RUN cd /services/software/php-5.4.45 && ./buildconf --force
 #RUN mv /src/zookeeper-3.4.6.tar.gz /services/software/
 RUN cd /services/software/ && tar xzf zookeeper-3.4.6.tar.gz
+RUN cd /services/software/ext/ && tar xzf zookeeper-0.4.0.tgz
+RUN cp -r /services/software/ext/zookeeper-0.4.0 /services/software/php-5.4.45/ext/zookeeper
+RUN cd /services/software/php-5.4.45 && ./buildconf --force
 RUN cd /services/software/zookeeper-3.4.6/src/c && ./configure --prefix=/services/software/zookeeper-3.4.6/prefix/ && make -j$(nproc) && make install
 RUN cd /services/software/php-5.4.45/ && './configure' '--prefix=/usr/local/php5_new' '--disable-cgi' '--enable-mbstring=all' '--enable-pcntl' '--enable-dba' '--enable-sysvmsg' '--enable-sysvshm' '--enable-sockets' '-enable-sigchild' '--enable-ftp' '--enable-memcache' '--enable-zookeeper' '--with-libzookeeper-dir=/services/software/zookeeper-3.4.6/prefix/' '--enable-proctitle' '--with-zlib' && make -j$(nproc) && make install
 #RUN cd /services/software && git clone git://git.gnome.org/libxml2
