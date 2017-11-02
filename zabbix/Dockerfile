@@ -19,7 +19,7 @@ EXPOSE 22 80
 
 
 RUN mkdir -p /services/software/
-RUN wget https://nchc.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.2.20/zabbix-2.2.20.tar.gz /services/software/zabbix-2.2.20.tar.gz
+RUN wget https://nchc.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.2.20/zabbix-2.2.20.tar.gz -O /services/software/zabbix-2.2.20.tar.gz
 
 ADD files/hosts /tmp/hosts
 ADD files/start.sh /start.sh
