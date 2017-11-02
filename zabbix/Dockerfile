@@ -1,4 +1,4 @@
-# Run zabbix in a container
+# Run zabbix2.2 in a container
 
 FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
