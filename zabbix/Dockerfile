@@ -48,7 +48,7 @@ RUN echo "Port 2122" >> /etc/ssh/sshd_config
 # starting ssh on port 2122 in order to support --net=host
 
 
-
+RUN mkdir -p /services/software/
 RUN wget https://nchc.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.2.20/zabbix-2.2.20.tar.gz -O /services/software/zabbix-2.2.20.tar.gz
 #Other ports
 EXPOSE 80 2122
