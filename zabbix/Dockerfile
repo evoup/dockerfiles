@@ -14,7 +14,7 @@ RUN yum -y clean all
 RUN yum -y groupinstall "Development Tools" "Development Libraries"
 RUN yum -y update
 RUN yum install -y curl curl-devel net-snmp snmp net-snmp-devel perl-DBI php-gd php-xml php-bcmath php-mbstring
-RUN yum install -y mysql-server
+RUN yum install -y mysql-server mysql-devel java-1.8.0-openjdk-devel
 
 RUN echo 'root:centos' |chpasswd
 RUN service sshd start
@@ -52,6 +52,7 @@ RUN echo "Port 2122" >> /etc/ssh/sshd_config
 
 RUN mkdir -p /services/software/
 RUN wget https://nchc.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.2.20/zabbix-2.2.20.tar.gz -O /services/software/zabbix-2.2.20.tar.gz
+RUN cd /services/software && tar xzf zabbix-2.2.20.tar.gz
 #Other ports
 EXPOSE 80 2122
 
