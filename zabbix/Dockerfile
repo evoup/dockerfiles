@@ -64,6 +64,7 @@ EXPOSE 80 2122
 ADD files/hosts /tmp/hosts
 
 ADD files/start.sh /start.sh
+ADD files/php.ini /etc/php.ini
 RUN chmod +x /start.sh
 ENTRYPOINT ["/start.sh"]
 CMD []
