@@ -19,5 +19,6 @@ mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/zabbix-mysq
 mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/zabbix-mysql/images.sql;"
 cat "\nDBPassword=zabbix\n" >> /etc/zabbix/zabbix_server.conf
 /etc/init.d/zabbix-server start
+/etc/init.d/httpd start
 
 /usr/sbin/sshd -D
