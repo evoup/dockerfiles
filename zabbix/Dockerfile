@@ -12,6 +12,7 @@ RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget epel-release sudo
 RUN yum -y clean all
 RUN yum -y groupinstall "Development Tools" "Development Libraries"
+RUN rpm -ivh http://repo.zabbix.com/zabbix/2.2/rhel/6/x86_64/zabbix-release-2.2-1.el6.noarch.rpm
 RUN yum -y update
 RUN yum install -y curl curl-devel net-snmp snmp net-snmp-devel perl-DBI php-gd php-xml php-bcmath php-mbstring
 RUN yum install -y mysql-server mysql-devel java-1.8.0-openjdk-devel
