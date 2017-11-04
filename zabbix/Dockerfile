@@ -1,6 +1,7 @@
 # Run zabbix2.2 in a container
 #
 #docker run --privileged=true --name zabbix -p8010:80 -p2209:22 -ti -d --ip 172.18.0.56 --net b0 --hostname zabbix evoup/zabbix
+#after run,visit localhost:8010/zabbix,run setup,then use Admin/zabbix account to login.
 
 # Base docker image
 
