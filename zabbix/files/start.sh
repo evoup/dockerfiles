@@ -17,5 +17,7 @@ mysql --user=root --password=zabbix -e "grant all privileges on zabbix.* to zabb
 mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/zabbix-mysql/schema.sql;"
 mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/zabbix-mysql/data.sql;"
 mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/zabbix-mysql/images.sql;"
+cat "\nDBPassword=zabbix\n" >> /etc/zabbix/zabbix_server.conf
+/etc/init.d/zabbix-server start
 
 /usr/sbin/sshd -D
