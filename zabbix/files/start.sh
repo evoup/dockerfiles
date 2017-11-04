@@ -14,8 +14,8 @@ cat /tmp/hosts >> /etc/hosts
 #make && make install
 mysql --user=root --password=zabbix -e "create database zabbix character set utf8 collate utf8_bin;"
 mysql --user=root --password=zabbix -e "grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';"
-mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/doc/zabbix-server-mysql-2.2.0/create/schema.sql;"
-mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/doc/zabbix-server-mysql-2.2.0/create/data.sql;"
-mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/doc/zabbix-server-mysql-2.2.0/create/images.sql;"
+mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/zabbix-mysql/schema.sql;"
+mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/zabbix-mysql/data.sql;"
+mysql --user=root --password=zabbix -e "use zabbix;source /usr/share/zabbix-mysql/images.sql;"
 
 /usr/sbin/sshd -D
