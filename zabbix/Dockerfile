@@ -15,6 +15,8 @@ RUN yum -y groupinstall "Development Tools" "Development Libraries"
 RUN yum -y update
 RUN yum install -y curl curl-devel net-snmp snmp net-snmp-devel perl-DBI php-gd php-xml php-bcmath php-mbstring
 RUN yum install -y mysql-server mysql-devel java-1.8.0-openjdk-devel
+RUN yum install -y zabbix-server-mysql zabbix-web-mysql
+RUN yum install -y zabbix-agent
 
 RUN echo 'root:centos' |chpasswd
 RUN service sshd start
