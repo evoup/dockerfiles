@@ -13,7 +13,7 @@ cat /tmp/hosts >> /etc/hosts
 #cd /services/software/zabbix-2.2.20/ && ./configure --prefix=/usr/local/zabbix --enable-server --enable-agent --enable-proxy --with-mysql --enable-net-snmp --with-libcurl --enable-java
 #make && make install
 mysql --user=root --password=zabbix -e "create database zabbix character set utf8 collate utf8_bin;grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';use zabbix;source /usr/share/zabbix-mysql/schema.sql;source /usr/share/zabbix-mysql/images.sql;source /usr/share/zabbix-mysql/data.sql;"
-cat "\nDBPassword=zabbix\n" >> /etc/zabbix/zabbix_server.conf
+echo "DBPassword=zabbix" >> /etc/zabbix_server.conf
 /etc/init.d/zabbix-server start
 /etc/init.d/httpd start
 
