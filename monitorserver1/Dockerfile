@@ -63,7 +63,7 @@ RUN groupadd nobody
 ADD files/php_fcgi_params.conf /etc/nginx/php_fcgi_params.conf 
 ADD files/default /etc/nginx/sites-available/default
 RUN echo "\n\n\nsecurity.limit_extensions = .php .php3 .php4 .php5 .m\n" >> /usr/local/php5_admin/etc/php-fpm.conf
-RUN cd /var/www/html && wget https://codeload.github.com/evoup/monitor_pass/zip/master -O monitor_pass.zip && unzip monitor_pass.zip && mv monitor_pass-master monitor_pass
+RUN if [ "x$devmode" = "x" ] ; then cd /var/www/html && wget https://codeload.github.com/evoup/monitor_pass/zip/master -O monitor_pass.zip && unzip monitor_pass.zip && mv monitor_pass-master monitor_pass ; else cd /var/www/html/ && git clone https://github.com/evoup/monitor_pass.git ; fi
 RUN ln -s /var/www/html/monitor_pass/monitor_ui/ /var/www/html/monitor_ui
 
 EXPOSE 80
