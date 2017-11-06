@@ -1,5 +1,7 @@
 # Run monitorserver1 in a container
 # (first create network: docker network create --subnet=172.18.0.0/16 b0)
+# if use devmode(will install vim and vim setting and clone git project for develop): docker build -t evoup/monitorserver --build-arg devmode=1 .
+# default:  docker build -t evoup/monitorserver .
 # docker run --name monitorserver1 --privileged=true -p8004:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver1 evoup/monitorserver
 # docker run --name monitorserver2 --privileged=true -p8005:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver2 evoup/monitorserver
 
@@ -7,6 +9,8 @@
 #FROM debian:jessie
 FROM ubuntu:16.04
 LABEL maintainer "evoup <evoex123@gmail.com>"
+ARG devmode
+RUN if [ "x$devmode" = "x" ] ; then echo Argument not provided ; else echo Argument is $devmode ; fi
 #avoid using add https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#entrypoint
 #ADD https://secure.php.net/distributions/php-5.4.45.tar.gz /src/php-5.4.45.tar.gz
 #ADD http://pecl.php.net/get/proctitle-0.1.2.tgz /src/proctitle-0.1.2.tgz
