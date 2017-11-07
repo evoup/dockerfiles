@@ -57,7 +57,7 @@ RUN mkdir -p /services/software
 RUN wget http://museum.php.net/php5/php-5.2.10.tar.bz2 -O /services/software/php-5.2.10.tar.bz2 && cd /services/software && tar xjf php-5.2.10.tar.bz2 
 RUN cd /services/software/php-5.2.10 && './configure' '--prefix=/usr/local/php5.2.10_cli' '--disable-cgi' '--enable-mbstring=all' '--enable-pcntl' '--enable-dba' '--enable-sysvmsg' '--enable-sysvshm' '--enable-sockets' '--enable-sigchild' '--enable-ftp' '--enable-embed' && make -j2 && make install
 
-#RUN yum -y install xerces-c xerces-c-devel libgcc gcc gcc-c++ boost141* libgc*  boost-devel
+RUN yum -y install xerces-c xerces-c-devel libgcc gcc gcc-c++ boost141* libgc*  boost-devel
 
 #Other ports
 EXPOSE 2210 18123  
