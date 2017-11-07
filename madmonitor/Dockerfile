@@ -1,6 +1,7 @@
 # Run madmonitor in a container
 #
 #docker run --privileged=true --name madmonitor -p2210:22 -p18123:18123 -ti -d --ip 172.18.0.57 --net b0 --hostname madmonitor evoup/madmonitor
+#docker build -t evoup/madmonitor .
 
 # Base docker image
 
