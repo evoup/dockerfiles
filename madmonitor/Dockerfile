@@ -52,11 +52,10 @@ RUN echo "Port 2122" >> /etc/ssh/sshd_config
 
 
 
-RUN yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+RUN yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel libxml2-devel
 RUN mkdir -p /services/software
 RUN wget http://museum.php.net/php5/php-5.2.10.tar.bz2 -O /services/software/php-5.2.10.tar.bz2 && cd /services/software && tar xjf php-5.2.10.tar.bz2 
-RUN cd /services/software/php-5.2.10 && './configure' '--prefix=/home/yin/services/php5.2.10_cli' '--disable-cgi' '--enable-mbstring=all' '--enable-pcntl' '--enable-dba' '--enable-sysvmsg' '--enable-sysvshm' '--enable-sockets' '--enable-sigchild' '--enable-ftp' '--enable-embed'
-RUN cd /services/software/php-5.2.10 && make -j2 && make install
+RUN cd /services/software/php-5.2.10 && './configure' '--prefix=/home/yin/services/php5.2.10_cli' '--disable-cgi' '--enable-mbstring=all' '--enable-pcntl' '--enable-dba' '--enable-sysvmsg' '--enable-sysvshm' '--enable-sockets' '--enable-sigchild' '--enable-ftp' '--enable-embed' && make -j2 && make install
 
 
 #Other ports
