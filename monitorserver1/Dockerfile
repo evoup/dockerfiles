@@ -4,6 +4,7 @@
 # default:  docker build -t evoup/monitorserver .
 # docker run --name monitorserver1 --privileged=true -p8004:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver1 evoup/monitorserver
 # docker run --name monitorserver2 --privileged=true -p8005:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver2 evoup/monitorserver
+# docker exec -it monitorserver1 /bin/tcsh
 
 # Base docker image
 #FROM debian:jessie
@@ -21,7 +22,8 @@ RUN if [ "x$devmode" = "x" ] ; then echo Argument not provided ; else echo Argum
 #RUN sed -i 's/httpredir.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget unzip libnet-ifconfig-wrapper-perl nginx lsof inetutils-syslogd -y
+RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget unzip libnet-ifconfig-wrapper-perl nginx lsof inetutils-syslogd tcsh -y
+RUN if [ "x$devmode" = "x" ] ; then echo will not install vim ; else apt-get install vim -y ; fi
 RUN mkdir -p /services/software/ext
 RUN wget https://secure.php.net/distributions/php-5.4.45.tar.gz -O /services/software/php-5.4.45.tar.gz
 RUN wget http://pecl.php.net/get/proctitle-0.1.2.tgz -O /services/software/ext/proctitle-0.1.2.tgz
@@ -65,6 +67,8 @@ ADD files/default /etc/nginx/sites-available/default
 RUN echo "\n\n\nsecurity.limit_extensions = .php .php3 .php4 .php5 .m\n" >> /usr/local/php5_admin/etc/php-fpm.conf
 RUN if [ "x$devmode" = "x" ] ; then cd /var/www/html && wget https://codeload.github.com/evoup/monitor_pass/zip/master -O monitor_pass.zip && unzip monitor_pass.zip && mv monitor_pass-master monitor_pass ; else cd /var/www/html/ && git clone https://github.com/evoup/monitor_pass.git ; fi
 RUN ln -s /var/www/html/monitor_pass/monitor_ui/ /var/www/html/monitor_ui
+
+RUN if [ "x$devmode" = "x" ] ; then echo won`t install vim configuration files ; else cd /tmp/ && wget https://codeload.github.com/evoup/workenv/zip/master -O workenv.zip && unzip workenv.zip && cd /tmp/workenv-master/ && mv vim_setting/ .vimrc .vim .cshrc /root/ && rm -rf /tmp/workenv-master && rm -rf /tmp/workenv.zip && mkdir /root/.vimbak ; fi
 
 EXPOSE 80
 #CMD ["/etc/init.d/php-fpm start"]
