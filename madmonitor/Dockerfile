@@ -1,0 +1,66 @@
+# Run madmonitor in a container
+#
+#docker run --privileged=true --name madmonitor -p2210:22 -p18123:18123 -ti -d --ip 172.18.0.57 --net b0 --hostname madmonitor evoup/madmonitor
+
+# Base docker image
+
+
+FROM centos:6.9
+LABEL maintainer "evoup <evoex123@gmail.com>"
+ADD CentOS-Base.repo /etc/yum.repos.d/ 
+RUN yum -y update
+RUN yum -y install openssh-server openssh-clients wget epel-release sudo
+RUN yum -y update
+
+RUN yum -y update
+
+RUN echo 'root:centos' |chpasswd
+RUN service sshd start
+
+RUN rm -f /etc/bashrc
+
+ADD files/color_prompt /etc/color_prompt
+ADD files/bashrc /etc/bashrc
+ADD files/.bashrc /root/.bashrc
+ADD files/.bash_profile /root/.bash_profile
+
+EXPOSE 22
+
+RUN yum -y clean all
+
+RUN yum update -y libselinux
+
+# passwordless ssh
+RUN rm /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key
+RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
+RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
+RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
+RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+
+
+ADD ./files/ssh_config /root/.ssh/config
+RUN chmod 600 /root/.ssh/config
+RUN chown root:root /root/.ssh/config
+
+RUN sed  -i "/^[^#]*UsePAM/ s/.*/#&/"  /etc/ssh/sshd_config
+RUN echo "UsePAM no" >> /etc/ssh/sshd_config
+RUN echo "Port 2122" >> /etc/ssh/sshd_config 
+# starting ssh on port 2122 in order to support --net=host
+
+
+
+RUN yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+RUN mkdir -p /services/software
+
+
+#Other ports
+EXPOSE 2210 18123  
+
+
+
+ADD files/hosts /tmp/hosts
+
+ADD files/start.sh /start.sh
+RUN chmod +x /start.sh
+ENTRYPOINT ["/start.sh"]
+CMD []

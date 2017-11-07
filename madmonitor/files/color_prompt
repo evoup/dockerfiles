@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Colors
+export BLACK="\[\e[0;30m\]"
+export GRAY="\[\e[1;30m\]"
+export RED="\[\e[0;31m\]"
+export LRED="\[\e[1;31m\]"
+export DRED="\[\e[2;31m\]"
+export GREEN="\[\e[0;32m\]"
+export LGREEN="\[\e[1;32m\]"
+export DGREEN="\[\e[2;32m\]"
+export BROWN="\[\e[0;33m\]"
+export YELLOW="\[\e[1;33m\]"
+export DYELLOW="\[\e[2;33m\]"
+export BLUE="\[\e[0;34m\]"
+export LBLUE="\[\e[1;34m\]"
+export DBLUE="\[\e[2;34m\]"
+export MAGENTA="\[\e[0;35m\]"
+export LMAGENTA="\[\e[1;35m\]"
+export DMAGENTA="\[\e[2;35m\]"
+export CYAN="\[\e[0;36m\]"
+export LCYAN="\[\e[1;36m\]"
+export LGRAY="\[\e[0;37m\]"
+export DGRAY="\[\e[2;37m\]"
+export WHITE="\[\e[1;37m\]"
+export NORMAL="\[\e[0m\]"
+
+if [ $TERM = linux ];then
+export PS1="\n$WHITE ┌─[ $CYAN\d$NORMAL | $RED\t$NORMAL | $YELLOW\w $WHITE]\n$WHITE └─[ $MAGENTA\u $WHITE] $GREEN\\$ -> $NORMAL"
+export PS2="$GREY '>'$CLEAR"
+export PS3="$GREY '>>'$CLEAR"
+export PS4="$GREY '>>>'$CLEAR"
+else
+export PS1="\n$WHITE ┌─[ $CYAN\d$NORMAL | $RED\@$NORMAL | $YELLOW\w $WHITE]\n$WHITE └─[ $MAGENTA\u$NORMAL@$MAGENTA\h $WHITE] $GREEN\\$ -> $NORMAL"
+export PS2="$GREY '>'$CLEAR"
+export PS3="$GREY '>>'$CLEAR"
+export PS4="$GREY '>>>'$CLEAR"
+fi
