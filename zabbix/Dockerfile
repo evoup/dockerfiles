@@ -2,13 +2,17 @@
 #
 #docker run --privileged=true --name zabbix -p8010:80 -p2209:22 -ti -d --ip 172.18.0.56 --net b0 --hostname zabbix evoup/zabbix
 #after run,visit localhost:8010/zabbix,run setup,then use Admin/zabbix account to login.
+#for using aliyun yum mirror: docker build -t evoup/zabbix --build-arg use_yum_mirror=1 .
+#for default such as dockerhub automation: docker build -t evoup/zabbix .
 
 # Base docker image
 
 
 FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
-ADD CentOS-Base.repo /etc/yum.repos.d/ 
+#ADD CentOS-Base.repo /etc/yum.repos.d/ 
+ADD CentOS-Base.repo /tmp/ 
+RUN if [ "x$use_yum_mirror" = "x" ] ; then echo do not use yum mirror ; else mv /tmp/CentOS-Base.repo /etc/yum.repos.d/ ; fi
 RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget epel-release sudo
 RUN yum -y clean all
