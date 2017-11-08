@@ -8,7 +8,9 @@
 
 FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
-ADD CentOS-Base.repo /etc/yum.repos.d/ 
+ARG use_yum_mirror
+ADD CentOS-Base.repo /tmp/ 
+RUN if [ "x$use_yum_mirror" = "x" ] ; then echo do not use yum mirror ; else mv /tmp/CentOS-Base.repo /etc/yum.repos.d/ ; fi
 RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget epel-release sudo
 RUN yum -y clean all
