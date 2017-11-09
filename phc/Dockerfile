@@ -14,7 +14,6 @@ RUN yum -y install xerces-c xerces-c-devel libgcc gcc gcc-c++ libgc*
 #Other ports
 EXPOSE 2210   
 
-ADD files/rpms/ /services/software/rpms/
 RUN rpm -ivh http://repo.enetres.net/x86_64/boost-license1_55_0-1.55.0-1.x86_64.rpm
 RUN rpm -ivh http://repo.enetres.net/x86_64/libboost_context1_55_0-1.55.0-1.x86_64.rpm
 RUN yum -y install libicu gc-devel
