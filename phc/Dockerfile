@@ -1,6 +1,6 @@
 # Run phc in a container
 #
-#docker build -t evoup/madmonitor .
+#docker build -t evoup/phc .
 
 # Base docker image
 
