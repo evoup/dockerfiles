@@ -43,6 +43,7 @@ RUN wget https://codeload.github.com/evoup/phc/zip/master -O /services/software/
 RUN cd /services/software/ && unzip phc.zip
 RUN cd /services/software/phc-master && ./configure --with-php=/usr/local/php5.2.10_cli/ --with-boost-libdir=/usr/lib64/
 RUN cd /services/software/phc-master && make -j2 && make install
+RUN rm -rf /services/software/phc.zip && rm -rf /services/software/phc-master
 
 ADD files/hosts /tmp/hosts
 
