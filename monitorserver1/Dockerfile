@@ -2,8 +2,8 @@
 # (first create network: docker network create --subnet=172.18.0.0/16 b0)
 # if use use_yum_mirror: docker build -t evoup/monitorserver --build-arg use_yum_mirror=1 .
 # default:  docker build -t evoup/monitorserver .
-# docker run --name monitorserver1 --privileged=true -p8004:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver1 evoup/monitorserver1
-# docker run --name monitorserver2 --privileged=true -p8005:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver2 evoup/monitorserver1
+# docker run --name monitorserver1_1 --privileged=true -p8004:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver1 evoup/monitorserver1
+# docker run --name monitorserver1_2 --privileged=true -p8005:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver2 evoup/monitorserver1
 # docker exec -it monitorserver1 /bin/tcsh
 
 # Base docker image
