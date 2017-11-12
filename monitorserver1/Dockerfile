@@ -1,6 +1,6 @@
 # Run monitorserver1 in a container
 # (first create network: docker network create --subnet=172.18.0.0/16 b0)
-# if use use_yum_mirror: docker build -t evoup/monitorserver --build-arg use_yum_mirror=1 .
+# if use use_source_mirror: docker build -t evoup/monitorserver --build-arg use_source_mirror=1 .
 # default:  docker build -t evoup/monitorserver .
 # docker run --name monitorserver1_1 --privileged=true -p8004:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver1_1 evoup/monitorserver1
 # docker run --name monitorserver1_2 --privileged=true -p8005:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver1_2 evoup/monitorserver1
@@ -10,7 +10,7 @@
 #FROM debian:jessie
 FROM ubuntu:16.04
 LABEL maintainer "evoup <evoex123@gmail.com>"
-ARG use_yum_mirror
+ARG use_source_mirror
 #avoid using add https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#entrypoint
 #ADD https://secure.php.net/distributions/php-5.4.45.tar.gz /src/php-5.4.45.tar.gz
 #ADD http://pecl.php.net/get/proctitle-0.1.2.tgz /src/proctitle-0.1.2.tgz
@@ -19,9 +19,9 @@ ARG use_yum_mirror
 #ADD http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz /src/zookeeper-3.4.6.tar.gz
 
 #RUN sed -i 's/httpredir.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-RUN if [ "x$use_yum_mirror" = "x" ] ; then echo not use yum mirror ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
+RUN if [ "x$use_source_mirror" = "x" ] ; then echo not use yum mirror ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
 RUN apt-get update
-RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget unzip libnet-ifconfig-wrapper-perl nginx lsof inetutils-syslogd tcsh vim -y
+RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget unzip libnet-ifconfig-wrapper-perl nginx lsof inetutils-syslogd tcsh vim rsyslog -y
 RUN mkdir -p /services/software/ext
 RUN wget http://museum.php.net/php5/php-5.4.45.tar.gz -O /services/software/php-5.4.45.tar.gz
 RUN wget http://pecl.php.net/get/proctitle-0.1.2.tgz -O /services/software/ext/proctitle-0.1.2.tgz
