@@ -69,6 +69,7 @@ RUN cd /var/www/html/ && git clone https://github.com/evoup/monitor_pass.git
 RUN ln -s /var/www/html/monitor_pass/monitor_ui/ /var/www/html/monitor_ui
 
 RUN cd /tmp/ && wget https://codeload.github.com/evoup/workenv/zip/master -O /tmp/workenv.zip && unzip workenv.zip && cd /tmp/workenv-master/ && mv vim_setting/ .vimrc .vim .cshrc /root/ && rm -rf /tmp/workenv-master && rm -rf /tmp/workenv.zip && mkdir /root/.vimbak
+RUN apt-get install --reinstall dpkg
 
 EXPOSE 80
 ADD files/start.sh /start.sh
