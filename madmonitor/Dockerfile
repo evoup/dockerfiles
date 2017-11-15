@@ -15,7 +15,7 @@ RUN yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel libxml2-devel
 #Other ports
 EXPOSE 2210 18123  
 
-RUN mkdir /services/monitor_deal/ && cd !$ && git clone https://github.com/evoup/monitor_pass.git
+RUN mkdir -p /services/monitor_deal/ && cd /services/monitor_deal/ && git clone https://github.com/evoup/monitor_pass.git
 RUN cd /services/monitor_deal/monitor_pass/madmonitor/scripts/ && phc --include -c madmonitor.m -o madmonitor
 
 ADD files/hosts /tmp/hosts
