@@ -53,6 +53,16 @@ server {
             fastcgi_pass 127.0.0.1:9000;
 	}
 
+		location ~ ^/monitor_server2r1_1/.*$ { #监控服务端引擎 new 1.1 for restful upload
+			rewrite /m1 /index.php?c=Upload break;
+			rewrite /m2 /index.php?c=Update break;
+			rewrite /m3 /index.php?c=Testspeed_update break;
+			include /etc/nginx/php_fcgi_params.conf;
+			root /var/www/html/monitor_pass/monitor_server/;
+			fastcgi_index index.php;
+			fastcgi_pass 127.0.0.1:9000;
+		} 
+
 	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
 	#
 	#location ~ \.php$ {

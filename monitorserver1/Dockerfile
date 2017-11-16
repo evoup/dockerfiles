@@ -30,7 +30,8 @@ RUN wget http://pecl.php.net/get/proctitle-0.1.2.tgz -O /services/software/ext/p
 RUN wget http://pecl.php.net/get/memcache-2.2.7.tgz -O /services/software/ext/memcache-2.2.7.tgz
 RUN wget http://pecl.php.net/get/zookeeper-0.4.0.tgz -O /services/software/ext/zookeeper-0.4.0.tgz
 RUN wget http://alpha.gnu.org/pub/gnu/autoconf/autoconf-2.59d.tar.gz -O /services/software/autoconf-2.59d.tar.gz
-RUN wget http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz -O /services/software/zookeeper-3.4.11.tar.gz
+#RUN wget http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz -O /services/software/zookeeper-3.4.11.tar.gz
+RUN wget https://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz -O /services/software/zookeeper-3.4.11.tar.gz
 
 #RUN mv /src/php-5.4.45.tar.gz /services/software/
 RUN cd /services/software/ && tar xzf php-5.4.45.tar.gz
