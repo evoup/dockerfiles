@@ -28,7 +28,7 @@ ARG use_source_mirror
 
 RUN yum -y clean all
 ADD CentOS-Base.repo /etc/yum.repos.d/ 
-RUN if [ "x$use_source_mirror" = "x" ] ; then rm -rf /etc/yum.repos.d/ ; else echo using yum mirror ; fi   
+RUN if [ "x$use_source_mirror" = "x" ] ; then rm -rf /etc/yum.repos.d/CentOS-Base.repo ; else echo using yum mirror ; fi   
 RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget epel-release
 RUN yum -y update
