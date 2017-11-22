@@ -1,6 +1,7 @@
 # Run cdh5repo httpserver in a container
 #without proxy: docker build -t evoup/cdh5repo . 
-#to use proxy: docker build -t evoup/cdh5repo --build-arg USE_PROXY=172.18.0.1:8123 .
+#to use proxy: docker build -t evoup/cdh5repo --build-arg use_proxy=172.18.0.1:8123 .
+#if use yum mirror,docker build -t evoup/cdh5repo --build-arg use_source_mirror=1 .
 #which 172.18.0.1 is interface docker0`s ip(if in mac,it mean`s host ip),and run polipo with sslocal on docker.
  
 #(after build, docker exec -it cdh5repo /bin/bash
@@ -22,14 +23,17 @@
 
 FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
+ARG use_proxy
+ARG use_source_mirror
+
 RUN yum -y clean all
 ADD CentOS-Base.repo /etc/yum.repos.d/ 
+RUN if [ "x$use_source_mirror" = "x" ] ; then rm -rf /etc/yum.repos.d/ ; else echo using yum mirror ; fi   
 RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget epel-release
 RUN yum -y update
 RUN yum -y install nginx wget 
-ARG USE_PROXY
-RUN export all_proxy=USE_PROXY
+RUN if [ "x$use_proxy" = "x" ] ; then echo not using proxy ; else export all_proxy="$use_proxy" ; fi
 RUN cd /etc/yum.repos.d/ && wget https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo -O cloudera-cdh5.repo 
 RUN yum -y update 
 RUN yum -y install yum-utils createrepo
@@ -38,5 +42,6 @@ EXPOSE 80
 
 ADD files/start.sh /tmp/start.sh
 RUN chmod +x /tmp/start.sh
+RUN cd /usr/share/nginx/html/ && reposync -r cloudera-cdh5
 CMD ["/tmp/start.sh"]
 
