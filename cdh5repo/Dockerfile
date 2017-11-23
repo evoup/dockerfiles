@@ -45,5 +45,7 @@ EXPOSE 80
 ADD files/start.sh /tmp/start.sh
 RUN chmod +x /tmp/start.sh
 RUN cd /usr/share/nginx/html/ && reposync -r cloudera-cdh5
+RUN mkdir /usr/share/nginx/html/cdh
+RUN ln -s /usr/share/nginx/html/cloudera-cdh5/ /usr/share/nginx/html/cdh/5 
 CMD ["/tmp/start.sh"]
 
