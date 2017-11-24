@@ -47,5 +47,6 @@ RUN chmod +x /tmp/start.sh
 RUN cd /usr/share/nginx/html/ && reposync -r cloudera-cdh5
 RUN mkdir /usr/share/nginx/html/cdh
 RUN ln -s /usr/share/nginx/html/cloudera-cdh5/ /usr/share/nginx/html/cdh/5 
+RUN cd /usr/share/nginx/html/cdh/5 && createrepo .
 CMD ["/tmp/start.sh"]
 
