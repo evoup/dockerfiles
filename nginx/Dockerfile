@@ -9,6 +9,7 @@ RUN apt-get update
 RUN apt-get -y install nginx
 
 EXPOSE 80
+VOLUME ["/var/www/html"]
 
 ADD files/start.sh /start.sh
 RUN chmod 755 ./start.sh
