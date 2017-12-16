@@ -1,11 +1,11 @@
 # Run phc in a container
 #
-#docker build -t evoup/phc .
+#docker build -t evoup/phc_over_5.5.0 .
 
 # Base docker image
 
 
-FROM evoup/php5.2.10
+FROM evoup/php5.5.0
 LABEL maintainer "evoup <evoex123@gmail.com>"
 
 
@@ -41,7 +41,7 @@ RUN rpm -ivh http://repo.enetres.net/x86_64/libboost_wave1_55_0-1.55.0-1.x86_64.
 RUN rpm -ivh http://repo.enetres.net/x86_64/boost-devel-1.55.0-1.x86_64.rpm
 RUN wget https://codeload.github.com/evoup/phc/zip/master -O /services/software/phc.zip
 RUN cd /services/software/ && unzip phc.zip
-RUN cd /services/software/phc-master && ./configure --with-php=/usr/local/php5.2.10_cli/ --with-boost-libdir=/usr/lib64/
+RUN cd /services/software/phc-master && ./configure --with-php=/usr/local/php5.5.0_cli/ --with-boost-libdir=/usr/lib64/
 RUN cd /services/software/phc-master && make -j2 && make install
 RUN rm -rf /services/software/phc.zip && rm -rf /services/software/phc-master
 
