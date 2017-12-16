@@ -6,7 +6,7 @@
 # Base docker image
 
 
-FROM evoup/phc
+FROM evoup/phc-over5.2.10
 LABEL maintainer "evoup <evoex123@gmail.com>"
 
 
