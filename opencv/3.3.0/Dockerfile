@@ -25,6 +25,8 @@ RUN apt-get update && \
         libjasper-dev \
         libavformat-dev \
         libpq-dev \
+        libavresample-dev \
+        libgphoto2-dev \
         libgtk2.0-dev
 
 WORKDIR /
