@@ -24,7 +24,8 @@ RUN apt-get update && \
         libtiff-dev \
         libjasper-dev \
         libavformat-dev \
-        libpq-dev
+        libpq-dev \
+        libgtk2.0-dev
 
 WORKDIR /
 RUN wget https://github.com/opencv/opencv/archive/3.3.0.zip \
@@ -49,5 +50,5 @@ RUN wget https://github.com/opencv/opencv/archive/3.3.0.zip \
   -DPYTHON_INCLUDE_DIR=$(python2.7 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
   -DPYTHON_PACKAGES_PATH=$(python2.7 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") .. \
 && make install
-#&& rm /3.3.0.zip
-#&& rm -r /opencv-3.3.0
+&& rm /3.3.0.zip
+&& rm -r /opencv-3.3.0
