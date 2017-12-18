@@ -1,0 +1,11 @@
+# Run opencv3.4.0 in a container
+#
+#docker build -t evoup/opencv3.4 .
+
+# Base docker image
+
+
+FROM evoup/python2.7
+LABEL maintainer "evoup <evoex123@gmail.com>"
+
+
