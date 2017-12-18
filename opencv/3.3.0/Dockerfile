@@ -49,6 +49,6 @@ RUN wget https://github.com/opencv/opencv/archive/3.3.0.zip \
   -DPYTHON_EXECUTABLE=$(which python2.7) \
   -DPYTHON_INCLUDE_DIR=$(python2.7 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
   -DPYTHON_PACKAGES_PATH=$(python2.7 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") .. \
-&& make install
-&& rm /3.3.0.zip
+&& make install \
+&& rm /3.3.0.zip \
 && rm -r /opencv-3.3.0
