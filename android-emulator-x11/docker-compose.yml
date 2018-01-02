@@ -1,0 +1,11 @@
+version: '2'
+services:
+  main:
+    environment:
+        - DISPLAY
+    privileged: true
+    network_mode: "host"
+    image: "pinfake/android-emulator-x11:debian-jessie"
+    volumes:
+        - "/usr/lib:/usr/lib"
+        - "/tmp/.X11-unix:/tmp/.X11-unix" 
