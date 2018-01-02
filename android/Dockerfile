@@ -12,4 +12,10 @@ RUN apt-get -y install git-core gnupg flex bison gperf build-essential zip curl 
 RUN mkdir ~/bin
 RUN PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
 RUN mkdir WORKING_DIRECTORY && cd WORKING_DIRECTORY
+git config --global user.name "evoup"
+git config --global user.email "evoex123@gmail.com"
+repo init -u https://android.googlesource.com/platform/manifest
+repo init -u https://android.googlesource.com/platform/manifest -b android-8.0.0_r35
+repo sync
+
 
