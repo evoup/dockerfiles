@@ -11,8 +11,8 @@ RUN PATH=/root/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloa
 RUN mkdir WORKING_DIRECTORY && cd WORKING_DIRECTORY
 RUN git config --global user.name "evoup"
 RUN git config --global user.email "evoex123@gmail.com"
-RUN /root/bin/repo init -u https://android.googlesource.com/platform/manifest
-RUN /root/bin/repo init -u https://android.googlesource.com/platform/manifest -b android-8.0.0_r35
-RUN /root/bin/repo sync
+#RUN /root/bin/repo init -u https://android.googlesource.com/platform/manifest
+#RUN /root/bin/repo init -u https://android.googlesource.com/platform/manifest -b android-8.0.0_r35
+#RUN /root/bin/repo sync
 
 
