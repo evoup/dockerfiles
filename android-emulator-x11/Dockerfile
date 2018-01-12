@@ -15,5 +15,5 @@ RUN echo "n" | android create avd --force -n nexus -t android-23 -b default/x86 
 COPY avd/config.ini $ANDROID_HOME/.android/avd/nexus.avd/
 RUN cd /tmp && curl -O https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 RUN cd /tmp && unzip platform-tools-latest-linux.zip && mv platform-tools /opt/android-sdk_linux/
-RUN rm /tmp/*.tgz
+RUN rm -f /tmp/*.zip
 ENTRYPOINT ["emulator64-x86","@nexus"]

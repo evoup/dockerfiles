@@ -2,6 +2,8 @@
 
 Docker container ready to run an android emulator through x11.
 
+This image is based on pinfake/android-emulator-x11 and add platform-tools support.
+
 This container requires KVM enabled on the host machine.
 
 It will only run on 64 bit linux distros (debian,ubuntu,arch tested so far).
