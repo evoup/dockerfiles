@@ -74,9 +74,9 @@ adb
 ```bash
 # build the image
 # set the working directory to the project's root directory first
-docker build -t android-sdk android-sdk
+docker build -t evoup/android-sdk android-sdk
 # or pull the image
-docker pull thyrlian/android-sdk
+docker pull evoup/android-sdk
 
 # below commands assume that you've pulled the image
 
