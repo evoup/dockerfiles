@@ -1,0 +1,14 @@
+sudo: required
+
+language: bash
+
+services:
+  - docker
+
+install:
+  - git clone https://github.com/thyrlian/AndroidSDK.git ~/AndroidSDK
+
+script:
+  - docker build -t android-sdk ~/AndroidSDK/android-sdk
+  - docker images
+  - docker run -it --rm android-sdk bash -c 'cat /etc/*release | grep VERSION= && java -version && gradle -v && kotlinc -version && cat $ANDROID_HOME/tools/source.properties | grep Pkg.Revision && sdkmanager --list && apt list --installed | grep openssh-server'
