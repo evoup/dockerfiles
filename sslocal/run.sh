@@ -4,6 +4,6 @@ docker run -d -p 10800:1081 --name sslocal zhenkyle/docker-sslocal \
                 -s 45.78.40.187 \
                 -p 19388 \
                 -l 1081 \
-                -k wakaka \
+                -k password \
                 -m aes-256-cfb 
 
