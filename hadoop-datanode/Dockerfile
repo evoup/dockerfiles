@@ -17,6 +17,7 @@ RUN yum -y update
 
 ADD cloudera-cdh5.repo /etc/yum.repos.d/cloudera-cdh5.repo 
 RUN echo baseurl=http://cdh5repo/cdh/5/ >> /etc/yum.repos.d/cloudera-cdh5.repo
+RUN curl http://archive.cloudera.com/gplextras5/redhat/5/x86_64/gplextras/cloudera-gplextras5.repo > /etc/yum.repos.d/cloudera-gplextras5.repo
 RUN yum -y update
 
 RUN echo 'root:centos' |chpasswd
@@ -57,7 +58,7 @@ RUN rpm --import /tmp/RPM-GPG-KEY-cloudera
 
 
 RUN yum -y install java-1.7.0-openjdk java-1.7.0-openjdk-devel 
-RUN yum -y install hadoop-yarn-nodemanager hadoop-hdfs-datanode hadoop-mapreduce
+RUN yum -y install hadoop-yarn-nodemanager hadoop-hdfs-datanode hadoop-mapreduce hadoop-lzo
 
 
 # Hdfs ports

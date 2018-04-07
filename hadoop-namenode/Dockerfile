@@ -5,6 +5,17 @@
 
 #according this page to configure, and this time we just have a look, we already configed most of all already!
 #http://www.cloudera.com/documentation/cdh/5-1-x/CDH5-Installation-Guide/cdh5ig_hdfs_cluster_deploy.html
+#Configuring DataNodes to Tolerate Local Storage Directory Failure[no]
+#Formatting the NameNode
+#sudo -u hdfs hdfs namenode -format
+#Configuring a Remote NameNode Storage Directory[no]
+#Configuring the Secondary NameNode[no]
+#Enabling Trash[no]
+#Configuring Storage-Balancing for the DataNodes[no]
+#Enabling WebHDFS[no]
+#Configuring LZO[auto]
+
+
 # Base docker image
 
 
@@ -17,6 +28,7 @@ RUN yum -y update
 
 ADD cloudera-cdh5.repo /etc/yum.repos.d/cloudera-cdh5.repo 
 RUN echo baseurl=http://cdh5repo/cdh/5/ >> /etc/yum.repos.d/cloudera-cdh5.repo
+RUN curl http://archive.cloudera.com/gplextras5/redhat/5/x86_64/gplextras/cloudera-gplextras5.repo > /etc/yum.repos.d/cloudera-gplextras5.repo
 RUN yum -y update
 
 RUN echo 'root:centos' |chpasswd
@@ -59,6 +71,7 @@ RUN rpm --import /tmp/RPM-GPG-KEY-cloudera
 RUN yum -y install java-1.7.0-openjdk java-1.7.0-openjdk-devel
 RUN yum -y install hadoop-yarn-resourcemanager
 RUN yum -y install hadoop-hdfs-namenode
+RUN yum -y install hadoop-lzo
 
 
 # Hdfs ports
