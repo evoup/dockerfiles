@@ -1,4 +1,5 @@
 # Run cdh5repo httpserver in a container
+# correspond to cdh version is cdh5.13.0
 #without proxy: docker build -t evoup/cdh5repo . 
 #to use proxy: docker build -t evoup/cdh5repo --build-arg use_proxy=172.18.0.1:8123 .
 #if use yum mirror,docker build -t evoup/cdh5repo --build-arg use_source_mirror=1 .
