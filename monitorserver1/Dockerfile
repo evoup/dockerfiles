@@ -68,10 +68,10 @@ ADD files/default /etc/nginx/sites-available/default
 RUN echo "\n\n\nsecurity.limit_extensions = .php .php3 .php4 .php5 .m\n" >> /usr/local/php5_admin/etc/php-fpm.conf
 ADD files/php.ini /usr/local/php5_admin/etc/php.ini
 ADD files/php.ini /usr/local/php5_new/etc/php.ini
-RUN cd /var/www/html/ && git clone https://github.com/evoup/monitor_pass.git
+RUN cd /var/www/html/ && git clone https://gitee.com/evoup/monitor_pass.git
 RUN ln -s /var/www/html/monitor_pass/monitor_ui/ /var/www/html/monitor_ui
 
-RUN cd /tmp/ && wget https://codeload.github.com/evoup/workenv/zip/master -O /tmp/workenv.zip && unzip workenv.zip && cd /tmp/workenv-master/ && mv vim_setting/ .vimrc .vim .cshrc /root/ && rm -rf /tmp/workenv-master && rm -rf /tmp/workenv.zip && mkdir /root/.vimbak
+RUN cd /tmp/ && git clone https://gitee.com/evoup/workenv.git && cd /tmp/workenv/ && mv vim_setting/ .vimrc .vim .cshrc /root/ && rm -rf /tmp/workenv && mkdir /root/.vimbak
 RUN apt-get install --reinstall dpkg
 
 EXPOSE 80
