@@ -7,4 +7,4 @@
 #        proxyAddress=0.0.0.0 socksParentProxy=172.17.0.1:10800 socksProxyType=socks5 proxyPort=8123
 
 docker run -d --name=polipo -p 8124:8124 --hostname=polipo evoup/polipo \
-        proxyAddress=0.0.0.0 socksParentProxy=192.168.2.230:10800 socksProxyType=socks5 proxyPort=8124
+        proxyAddress=0.0.0.0 socksParentProxy=172.17.0.1:10800 socksProxyType=socks5 proxyPort=8124
