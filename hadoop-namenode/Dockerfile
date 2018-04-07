@@ -5,15 +5,25 @@
 
 #according this page to configure, and this time we just have a look, we already configed most of all already!
 #http://www.cloudera.com/documentation/cdh/5-1-x/CDH5-Installation-Guide/cdh5ig_hdfs_cluster_deploy.html
+#Copy the Hadoop configuration[auto]
+#Customizing Configuration Files[run copyConf.sh within namenode dockerfile]
+#Configuring Local Storage Directories[above done]
 #Configuring DataNodes to Tolerate Local Storage Directory Failure[no]
 #Formatting the NameNode
-#sudo -u hdfs hdfs namenode -format
+#  sudo -u hdfs hdfs namenode -format
 #Configuring a Remote NameNode Storage Directory[no]
 #Configuring the Secondary NameNode[no]
 #Enabling Trash[no]
 #Configuring Storage-Balancing for the DataNodes[no]
 #Enabling WebHDFS[no]
 #Configuring LZO[auto]
+#Start HDFS
+#  Deploy the configuration[auto]
+#  each node run:
+#    for x in `cd /etc/init.d ; ls hadoop-hdfs-*` ; do sudo service $x start ; done
+#  one node run:
+#    sudo -u hdfs hadoop fs -mkdir /tmp
+#    sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
 
 
 # Base docker image
