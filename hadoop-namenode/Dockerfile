@@ -3,6 +3,8 @@
 #docker run --privileged=true --name namenode1 -p2206:22 -p50070:50070 -ti -d --ip 172.18.0.53 --net b0 --hostname namenode1 evoup/hadoop-namenode
 #docker build --network b0 -t evoup/hadoop-namenode . 
 
+#according this page to configure, and this time we just have a look, we already configed most of all already!
+#http://www.cloudera.com/documentation/cdh/5-1-x/CDH5-Installation-Guide/cdh5ig_hdfs_cluster_deploy.html
 # Base docker image
 
 
