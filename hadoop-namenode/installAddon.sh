@@ -17,3 +17,6 @@ docker cp customizedConf/namenode1/etc/hbase/conf.my_cluster namenode1:/etc/hbas
 docker cp customizedConf/datanode1/etc/hbase/conf.my_cluster datanode1:/etc/hbase/
 
 docker cp customizedConf/datanode2/etc/hbase/conf.my_cluster datanode2:/etc/hbase/
+
+docker exec datanode1 sudo -u hdfs hadoop fs -mkdir /hbase 
+docker exec datanode1 sudo -u hdfs hadoop fs -chown hbase:hbase /hbase
