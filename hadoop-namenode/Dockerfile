@@ -24,6 +24,8 @@
 #  one node run:
 #    sudo -u hdfs hadoop fs -mkdir /tmp
 #    sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
+#install hbase
+#  run installAddon.sh 
 
 
 # Base docker image
