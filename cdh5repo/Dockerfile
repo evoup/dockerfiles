@@ -20,7 +20,7 @@
 #docker run -ti -d --ip 172.18.0.49 --net b0 -v ~/project/dockerRelative:/var/www/html/ -p 8003:80 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
 
 ##################################################################################
-# following command for build:
+# following command to run:
 # docker run -ti -d --net b0 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
 #while building hadoop image, it will visit host`s 80 port to fetch cdh package, and the speed is so fast:)
 ##################################################################################
