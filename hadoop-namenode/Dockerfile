@@ -28,6 +28,12 @@
 #    docker exec namenode1 sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
 #install hbase
 #  run installAddon.sh 
+#  run hbase node:
+#    docker exec datanode1 /etc/init.d/hbase-master start
+#    docker exec datanode1 /etc/init.d/hbase-regionserver start
+#    docker exec datanode1 /etc/init.d/hbase-thrift start
+#    docker exec datanode2 /etc/init.d/hbase-regionserver start
+#    docker exec datanode2 /etc/init.d/hbase-thrift start
 
 
 # Base docker image
