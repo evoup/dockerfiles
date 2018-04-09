@@ -1,5 +1,5 @@
 # Run hadoop in a container
-#
+#first run zk1 zk2 zk3 in zookeeper step
 #docker run --privileged=true --name namenode1 -p2206:22 -p50070:50070 -ti -d --ip 172.18.0.53 --net b0 --hostname namenode1 evoup/hadoop-namenode
 #docker build --network b0 -t evoup/hadoop-namenode . 
 
