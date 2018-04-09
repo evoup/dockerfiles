@@ -10,7 +10,7 @@
 #Configuring Local Storage Directories[above done]
 #Configuring DataNodes to Tolerate Local Storage Directory Failure[no]
 #Formatting the NameNode
-#  sudo -u hdfs hdfs namenode -format
+# docker exec namenode1 sudo -u hdfs hdfs namenode -format
 #Configuring a Remote NameNode Storage Directory[no]
 #Configuring the Secondary NameNode[no]
 #Enabling Trash[no]
@@ -20,10 +20,12 @@
 #Start HDFS
 #  Deploy the configuration[auto]
 #  each node run:
-#    for x in `cd /etc/init.d ; ls hadoop-hdfs-*` ; do sudo service $x start ; done
+#    docker exec namenode1 /bin/sh -c 'for x in `cd /etc/init.d ; ls hadoop-hdfs-*` ; do sudo service $x start ; done'
+#    docker exec datanode1 /bin/sh -c 'for x in `cd /etc/init.d ; ls hadoop-hdfs-*` ; do sudo service $x start ; done'
+#    docker exec datanode2 /bin/sh -c 'for x in `cd /etc/init.d ; ls hadoop-hdfs-*` ; do sudo service $x start ; done'
 #  one node run:
-#    sudo -u hdfs hadoop fs -mkdir /tmp
-#    sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
+#    docker exec namenode1 sudo -u hdfs hadoop fs -mkdir /tmp
+#    docker exec namenode1 sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
 #install hbase
 #  run installAddon.sh 
 
