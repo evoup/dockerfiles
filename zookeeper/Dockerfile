@@ -27,7 +27,8 @@ ADD files/bashrc /etc/bashrc
 ADD files/.bashrc /root/.bashrc
 ADD files/.bash_profile /root/.bash_profile
 
-EXPOSE 22 2181 2888 3888
+# 18050 is jmx port
+EXPOSE 22 2181 2888 3888 18050
 
 RUN yum -y clean all
 RUN yum -y install java-1.7.0-openjdk zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
