@@ -9,7 +9,9 @@ RUN apt-get update
 
 EXPOSE 8080
 
+
 ADD files/start.sh /start.sh
-RUN chmod 755 ./start.sh
-CMD ["./start.sh"]
+RUN chmod +x /start.sh
+ENTRYPOINT ["/start.sh"]
+CMD []
 
