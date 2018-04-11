@@ -24,6 +24,7 @@ RUN yum install -y curl curl-devel net-snmp snmp net-snmp-devel perl-DBI php-gd 
 RUN yum install -y mysql-server mysql-devel java-1.8.0-openjdk-devel
 RUN yum install -y zabbix22-server-mysql zabbix22-web-mysql
 RUN yum install -y zabbix22-agent
+RUN yum install -y zabbix-java-gateway
 
 RUN echo 'root:centos' |chpasswd
 RUN service sshd start
