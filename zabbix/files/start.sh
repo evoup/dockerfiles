@@ -3,7 +3,7 @@
 cat /tmp/hosts >> /etc/hosts
 
 /etc/init.d/mysqld start
-#/usr/bin/mysqladmin -u root password 'zabbix'
+/usr/bin/mysqladmin -u root password 'zabbix'
 #mysql --user=root --password=zabbix -e "create database zabbix;"
 #mysql --user=root --password=zabbix -e "grant all privileges on zabbix.* to zabbix@'%';"
 #mysql --user=root --password=zabbix -e "flush privileges;"
