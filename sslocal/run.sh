@@ -1,5 +1,5 @@
 #!/bin/sh
-docker run -d -p 10800:1081 --name sslocal evoup/docker \
+docker run -d -p 10800:1081 --name sslocal evoup/sslocal \
                 -b 0.0.0.0 \
                 -s 45.78.40.187 \
                 -p 19388 \
