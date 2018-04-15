@@ -1,7 +1,7 @@
 # Run monitorserver1 in a container
 # (first create network: docker network create --subnet=172.18.0.0/16 b0)
-# if use use_source_mirror: docker build -t evoup/monitorserver --build-arg use_source_mirror=1 .
-# default:  docker build -t evoup/monitorserver1 .
+# if use use_source_mirror and use gitee: docker build -t evoup/monitorserver1 --build-arg use_source_mirror=1 --build-arg gitee_passwd=xxx .
+# default and use github:  docker build -t evoup/monitorserver1 .
 # docker run --name monitorserver1_1 --privileged=true -p8004:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver1_1 evoup/monitorserver1
 # docker run --name monitorserver1_2 --privileged=true -p8005:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver1_2 evoup/monitorserver1
 # docker exec -it monitorserver1 /bin/tcsh
@@ -11,6 +11,7 @@
 FROM ubuntu:16.04
 LABEL maintainer "evoup <evoex123@gmail.com>"
 ARG use_source_mirror
+ARG gitee_passwd
 #avoid using add https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#entrypoint
 #ADD https://secure.php.net/distributions/php-5.4.45.tar.gz /src/php-5.4.45.tar.gz
 #ADD http://pecl.php.net/get/proctitle-0.1.2.tgz /src/proctitle-0.1.2.tgz
@@ -69,10 +70,12 @@ RUN echo "\n\n\nsecurity.limit_extensions = .php .php3 .php4 .php5 .m\n" >> /usr
 ADD files/php.ini /usr/local/php5_admin/etc/php.ini
 ADD files/php.ini /usr/local/php5_new/etc/php.ini
 #RUN cd /var/www/html/ && git clone https://github.com/evoup/monitor_pass.git
-RUN cd /var/www/html/ && git clone https://gitee.com/evoup/monitor_pass.git
+#RUN cd /var/www/html/ && git clone http://evoup:${gitee_passwd}@gitee.com/evoup/monitor_pass.git
+RUN if [ "x$use_source_mirror" = "x" ] ; then cd /var/www/html/ && git clone https://github.com/evoup/monitor_pass.git ; else cd /var/www/html/ && git clone http://evoup:${gitee_passwd}@gitee.com/evoup/monitor_pass.git ; fi
 RUN ln -s /var/www/html/monitor_pass/monitor_ui/ /var/www/html/monitor_ui
 #RUN cd /tmp/ && wget https://codeload.github.com/evoup/workenv/zip/master -O /tmp/workenv.zip && unzip workenv.zip && cd /tmp/workenv-master/ && mv vim_setting/ .vimrc .vim .cshrc /root/ && rm -rf /tmp/workenv-master && rm -rf /tmp/workenv.zip && mkdir /root/.vimbak
-RUN cd /tmp/ && git clone https://gitee.com/evoup/workenv.git && cd /tmp/workenv/ && mv vim_setting/ .vimrc .vim .cshrc /root/ && rm -rf /tmp/workenv && mkdir /root/.vimbak
+#RUN cd /tmp/ && git clone http://evoup:${gitee_passwd}@gitee.com/evoup/workenv.git && cd /tmp/workenv/ && mv vim_setting/ .vimrc .vim .cshrc /root/ && rm -rf /tmp/workenv && mkdir /root/.vimbak
+RUN if [ "x$use_source_mirror" = "x" ] ; then cd /tmp/ && wget https://codeload.github.com/evoup/workenv/zip/master -O /tmp/workenv.zip && unzip workenv.zip && cd /tmp/workenv-master/ && mv vim_setting/ .vimrc .vim .cshrc /root/ && rm -rf /tmp/workenv-master && rm -rf /tmp/workenv.zip && mkdir /root/.vimbak ; else cd /tmp/ && git clone http://evoup:${gitee_passwd}@gitee.com/evoup/workenv.git && cd /tmp/workenv/ && mv vim_setting/ .vimrc .vim .cshrc /root/ && rm -rf /tmp/workenv && mkdir /root/.vimbak ; fi
 RUN apt-get install --reinstall dpkg
 
 EXPOSE 80
