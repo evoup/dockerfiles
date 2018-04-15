@@ -36,7 +36,7 @@ else
     echo "TIMEOUT=3" >> /etc/zabbix/zabbix_java_gateway.conf 
 fi
 /etc/init.d/zabbix-server start
-/etc/init.d/zabbix-java-gateway/start
+/etc/init.d/zabbix-java-gateway start
 /etc/init.d/httpd start
 
 /usr/sbin/sshd -D
