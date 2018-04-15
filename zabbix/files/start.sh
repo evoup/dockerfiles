@@ -36,6 +36,8 @@ else
     echo "TIMEOUT=3" >> /etc/zabbix/zabbix_java_gateway.conf 
 fi
 /etc/init.d/zabbix-server start
+# because of zabbix javaGateway always can not start, just use this rode way
+rm -rf /var/run/zabbix/zabbix_java.pid
 /etc/init.d/zabbix-java-gateway start
 /etc/init.d/httpd start
 
