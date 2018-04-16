@@ -11,14 +11,14 @@ LABEL maintainer "evoup <evoex123@gmail.com>"
 
 
 #Other ports
-EXPOSE 2210  
+#EXPOSE 2210  
 
 RUN yum install -y git
 RUN mkdir -p /services/monitor_deal/ && cd /services/monitor_deal/ && git clone https://github.com/evoup/monitor_pass.git
 
-ADD files/hosts /tmp/hosts
+#ADD files/hosts /tmp/hosts
 
-ADD files/start.sh /start.sh
-RUN chmod +x /start.sh
-ENTRYPOINT ["/start.sh"]
-CMD []
+#ADD files/start.sh /start.sh
+#RUN chmod +x /start.sh
+#ENTRYPOINT ["/start.sh"]
+#CMD []
