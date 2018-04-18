@@ -1,13 +1,17 @@
 # Run monitoragent2 in a container
-#
-#docker run --privileged=true --name madmonitor -p2210:22 -p18123:18123 -v/home/evoup/project/gitProject/monitor_pass/madmonitor/scripts:/services/monitor_deal/gitProject -ti -d --ip 172.18.0.57 --net b0 --hostname madmonitor evoup/madmonitor
-#docker build -t evoup/monitoragent2 .
-
+# do not use golang over 1.9.x, plugin is unstable
+#without proxy: docker build -t evoup/monitoragent2 .
+#to use proxy: docker build -t evoup/monitoragent2 --build-arg use_proxy=192.168.101.104:8123
+##################################################################################
+# following command to run:
+#docker run --privileged=true --name madmonitor -p2210:22 -p18123:18123 -ti -d --ip 172.18.0.57 --net b0 --hostname montioragent2 evoup/monitoragent2
+##################################################################################
 # Base docker image
 
 
 FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
+ARG use_proxy
 
 
 #Other ports
