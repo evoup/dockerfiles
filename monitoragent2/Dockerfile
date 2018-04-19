@@ -26,6 +26,9 @@ RUN rm -rf /software/go1.9.5.linux-amd64.tar.gz
 ENV GOPATH /root/go
 ENV GOBIN /usr/local/go/bin/
 ENV PATH $GOBIN:$PATH
+RUN go get github.com/antonholmquist/jason
+RUN go get github.com/takama/daemon
+
 
 #ADD files/start.sh /start.sh
 #RUN chmod +x /start.sh
