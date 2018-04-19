@@ -28,7 +28,7 @@ ENV GOBIN /usr/local/go/bin/
 ENV PATH $GOBIN:$PATH
 RUN go get github.com/antonholmquist/jason
 RUN go get github.com/takama/daemon
-ADD ./files/golang_pkg/golang.org/ /root/go/src/ 
+#ADD ./files/golang_pkg/golang.org/ /root/go/src/ 
 
 
 #ADD files/start.sh /start.sh
