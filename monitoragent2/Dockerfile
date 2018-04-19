@@ -32,7 +32,7 @@ ENV GOBIN /usr/local/go/bin/
 ENV PATH $GOBIN:$PATH
 RUN go get github.com/antonholmquist/jason
 RUN go get github.com/takama/daemon
-ADD ./files/golang_pkg/golang.org.bz2 /root/go/src/ 
+ADD files/golang_pkg/golang.org.bz2 /root/go/src/ 
 RUN cd /root/go/src && tar xjf golang.org.bz2
 RUN rm -rf golang.org.bz2
 
