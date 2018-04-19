@@ -18,7 +18,7 @@ ARG use_proxy
 #EXPOSE 22 
 RUN yum -y update
 RUN yum -y groupinstall Development tools
-RUN yum install -y git
+RUN yum install -y git rsyslog
 RUN mkdir -p /services/monitor_deal/ && mkdir -p /software && cd /services/monitor_deal/ && git clone https://github.com/evoup/monitor_pass.git
 RUN if [ "x$use_proxy" = "x" ] ; then cd /software && curl -O https://dl.google.com/go/go1.9.5.linux-amd64.tar.gz ; else cd /software && curl -x"$use_proxy" -O https://dl.google.com/go/go1.9.5.src.tar.gz ; fi
 RUN tar -C /usr/local -xzf /software/go1.9.5.linux-amd64.tar.gz
