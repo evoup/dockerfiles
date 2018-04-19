@@ -4,7 +4,7 @@
 #to use proxy: docker build -t evoup/monitoragent2 --build-arg use_proxy=192.168.101.104:8124 .
 ##################################################################################
 # following command to run:
-#docker run --privileged=true --name monitoragent2 -P -ti -d --ip 172.18.0.57 --net b0 --hostname montioragent2 evoup/monitoragent2
+#docker run --privileged=true --name monitoragent2 -P -ti -d -v ~/projects/gitProjects/monitor_pass/madmonitor2/go/src/madmonitor2:/root/go/src/madmonitor2 --ip 172.18.0.57 --net b0 --hostname montioragent2 evoup/monitoragent2
 ##################################################################################
 # Base docker image
 
