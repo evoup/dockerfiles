@@ -1,7 +1,7 @@
 # Run monitoragent2 in a container
 # do not use golang over 1.9.x, plugin is unstable
 #without proxy: docker build -t evoup/monitoragent2 .
-#to use proxy: docker build -t evoup/monitoragent2 --build-arg use_proxy=192.168.199.143:8124 .
+#to use proxy: docker build -t evoup/monitoragent2 --build-arg use_proxy=192.168.101.104:8124 .
 ##################################################################################
 # following command to run:
 #docker run --privileged=true --name monitoragent2 -P -ti -d --ip 172.18.0.57 --net b0 --hostname montioragent2 evoup/monitoragent2
@@ -17,6 +17,7 @@ ARG use_proxy
 #Other ports
 #EXPOSE 22 
 RUN yum -y update
+RUN yum -y groupinstall Development tools
 RUN yum install -y git
 RUN mkdir -p /services/monitor_deal/ && mkdir -p /software && cd /services/monitor_deal/ && git clone https://github.com/evoup/monitor_pass.git
 RUN if [ "x$use_proxy" = "x" ] ; then cd /software && curl -O https://dl.google.com/go/go1.9.5.linux-amd64.tar.gz ; else cd /software && curl -x"$use_proxy" -O https://dl.google.com/go/go1.9.5.src.tar.gz ; fi
