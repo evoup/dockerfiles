@@ -1,57 +1,30 @@
 # Run go1.9 in a container
 #
-#docker build -t evoup/go1.9 .
+#docker build -t evoup/go1.9:ubuntu14.04 .
 
 # Base docker image
 
 
-FROM centos:6.9
+FROM ubuntu:14.04
 LABEL maintainer "evoup <evoex123@gmail.com>"
-ARG use_yum_mirror
-ADD CentOS-Base.repo /tmp/ 
-RUN if [ "x$use_yum_mirror" = "x" ] ; then echo do not use yum mirror ; else mv /tmp/CentOS-Base.repo /etc/yum.repos.d/ ; fi
-RUN yum -y update
-RUN yum -y install openssh-server openssh-clients wget epel-release sudo
-RUN yum -y install libxml2-devel 
-RUN yum -y clean all
-RUN yum -y groupinstall "Development Tools" "Development Libraries"
-RUN yum -y update
+ARG use_source_mirror
 
-RUN yum -y update
+RUN if [ "x$use_source_mirror" = "x" ] ; then echo not use yum mirror ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
+RUN apt-get update
+RUN apt-get install vim git build-essential autoconf -y 
 
-RUN echo 'root:centos' |chpasswd
-RUN service sshd start
 
-RUN rm -f /etc/bashrc
 
 ADD files/color_prompt /etc/color_prompt
 ADD files/bashrc /etc/bashrc
 ADD files/.bashrc /root/.bashrc
 ADD files/.bash_profile /root/.bash_profile
 
-EXPOSE 22
-
-RUN yum -y clean all
-
-RUN yum update -y libselinux
-
-# passwordless ssh
-RUN rm /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key
-RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
-RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
-RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
-RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
-
+#EXPOSE 22
 
 ADD ./files/ssh_config /root/.ssh/config
 RUN chmod 600 /root/.ssh/config
 RUN chown root:root /root/.ssh/config
-
-RUN sed  -i "/^[^#]*UsePAM/ s/.*/#&/"  /etc/ssh/sshd_config
-RUN echo "UsePAM no" >> /etc/ssh/sshd_config
-RUN echo "Port 2122" >> /etc/ssh/sshd_config 
-# starting ssh on port 2122 in order to support --net=host
-
 
 
 RUN mkdir -p /services/software
@@ -61,7 +34,7 @@ RUN cd /services/software && mv go /usr/local
 RUN echo "PATH=\$PATH:/usr/local/go/bin" >> /root/.bashrc
 
 
-ADD files/hosts /tmp/hosts
+#ADD files/hosts /tmp/hosts
 
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh
