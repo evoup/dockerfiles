@@ -11,7 +11,7 @@ ARG use_source_mirror
 
 RUN if [ "x$use_source_mirror" = "x" ] ; then echo not use yum mirror ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
 RUN apt-get update
-RUN apt-get install vim git build-essential autoconf -y 
+RUN apt-get install vim git build-essential autoconf wget -y 
 
 
 
