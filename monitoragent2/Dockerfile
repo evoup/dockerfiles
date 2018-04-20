@@ -14,6 +14,7 @@ LABEL maintainer "evoup <evoex123@gmail.com>"
 ARG use_proxy
 
 RUN apt-get update
+RUN apt-get install wget -y
 
 #ENV GOPATH /root/go
 #ENV GOBIN /usr/local/go/bin/
