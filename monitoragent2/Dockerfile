@@ -1,11 +1,11 @@
 # Run monitoragent2 in a container
 # do not use golang over 1.9.x, plugin is unstable
 #to build ubuntu version, git checkout master and run build or docker pull evoup/monitoragent2:ubuntu
-#without apt mirror: docker build -t evoup/monitoragent2:ubuntu .
-#with apt mirror: docker build -t evoup/monitoragent2:ubuntu --build-arg use_apt_mirror=1 .
+#without apt mirror: docker build -t evoup/monitoragent2:ubuntu14.04 .
+#with apt mirror: docker build -t evoup/monitoragent2:ubuntu14.04 --build-arg use_apt_mirror=1 .
 ##################################################################################
 # following command to run:
-#docker run --privileged=true --name monitoragent2 -P -ti -d -v ~/projects/gitProjects/monitor_pass/madmonitor2/go/src/madmonitor2:/root/go/src/madmonitor2 --ip 172.18.0.57 --net b0 --hostname montioragent2 evoup/monitoragent2:ubuntu
+#docker run --privileged=true --name monitoragent2 -P -ti -d -v ~/projects/gitProjects/monitor_pass/madmonitor2/go/src/madmonitor2:/root/go/src/madmonitor2 --ip 172.18.0.57 --net b0 --hostname montioragent2 evoup/monitoragent2:ubuntu14.04
 ##################################################################################
 # Base docker image
 
