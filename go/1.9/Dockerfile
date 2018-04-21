@@ -20,7 +20,7 @@ ADD files/bashrc /etc/bashrc
 ADD files/.bashrc /root/.bashrc
 ADD files/.bash_profile /root/.bash_profile
 
-EXPOSE 22
+EXPOSE 2122
 
 ADD ./files/ssh_config /root/.ssh/config
 RUN chmod 600 /root/.ssh/config
@@ -38,5 +38,6 @@ RUN echo "PATH=\$PATH:/usr/local/go/bin" >> /root/.bashrc
 
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh
+RUN mkdir /var/run/sshd
 ENTRYPOINT ["/start.sh"]
 CMD []
