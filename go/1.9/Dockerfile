@@ -33,6 +33,7 @@ RUN mkdir -p /services/software
 RUN cd /services/software && wget -c https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
 RUN cd /services/software && tar -xvf go1.9.2.linux-amd64.tar.gz
 RUN cd /services/software && mv go /usr/local
+RUN rm -rf /services/
 RUN echo "PATH=\$PATH:/usr/local/go/bin" >> /root/.bashrc
 
 
