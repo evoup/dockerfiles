@@ -1,7 +1,7 @@
 # Run go1.9 in a container
 #
-#docker build -t evoup/go1.9:ubuntu14.04 .
-#to use apt mirror: build -t evoup/go1.9:ubuntu14.04 --build-arg use_apt_mirror=1 .
+#use default apt mirror: docker build -t evoup/go1.9:ubuntu14.04 .
+#to use apt mirror: docker build -t evoup/go1.9:ubuntu14.04 --build-arg use_apt_mirror=1 .
 
 # Base docker image
 
@@ -34,8 +34,6 @@ RUN cd /services/software && tar -xvf go1.9.2.linux-amd64.tar.gz
 RUN cd /services/software && mv go /usr/local
 RUN echo "PATH=\$PATH:/usr/local/go/bin" >> /root/.bashrc
 
-
-#ADD files/hosts /tmp/hosts
 
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh
