@@ -10,10 +10,11 @@
 # Base docker image
 
 
-FROM evoup/go1.9:ubuntu
+FROM evoup/go1.9:ubuntu14.04
 LABEL maintainer "evoup <evoex123@gmail.com>"
 ARG use_apt_mirror
 RUN if [ "x$use_apt_mirror" = "x" ] ; then echo "use default apt source mirror" ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
+RUN if [ "x$use_apt_mirror" = "x" ] ; then echo "use default apt source mirror" ; else sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
 
 RUN apt-get update
 RUN apt-get install wget -y
