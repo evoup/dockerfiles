@@ -11,6 +11,7 @@ LABEL maintainer "evoup <evoex123@gmail.com>"
 ARG use_apt_mirror
 
 RUN if [ "x$use_apt_mirror" = "x" ] ; then echo "use default apt mirror" ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
+RUN if [ "x$use_apt_mirror" = "x" ] ; then echo "use default apt mirror" ; else sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
 RUN apt-get update
 RUN apt-get install vim git build-essential autoconf wget openssh-server -y 
 
