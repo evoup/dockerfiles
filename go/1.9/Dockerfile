@@ -11,7 +11,7 @@ ARG use_source_mirror
 
 RUN if [ "x$use_source_mirror" = "x" ] ; then echo not use yum mirror ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
 RUN apt-get update
-RUN apt-get install vim git build-essential autoconf wget -y 
+RUN apt-get install vim git build-essential autoconf wget openssh-server -y 
 
 
 
@@ -20,7 +20,7 @@ ADD files/bashrc /etc/bashrc
 ADD files/.bashrc /root/.bashrc
 ADD files/.bash_profile /root/.bash_profile
 
-#EXPOSE 22
+EXPOSE 22
 
 ADD ./files/ssh_config /root/.ssh/config
 RUN chmod 600 /root/.ssh/config
