@@ -8,4 +8,4 @@ polipo proxyAddress=0.0.0.0 \
        socksParentProxy=${SOCKS_PARENT_PROXY} \
        socksProxyType=socks5 \
        proxyPort=8124 \
-       dnsNameServer=8.8.8.8
+       dnsNameServer=${DNS_NAME_SERVER}
