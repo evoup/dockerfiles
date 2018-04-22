@@ -11,6 +11,14 @@ RUN apk update \
     && cd .. \
     && rm -rf polipo-* /var/cache/apk/*
 
-EXPOSE 8123
-ENTRYPOINT ["polipo"]
-CMD ["proxyAddress=0.0.0.0", "dnsNameServer=8.8.8.8"]
+ENV PROXY_ADDRESS="0.0.0.0"
+ENV SOCKS_PARENT_PROXY="192.168.1.13:10800"
+ENV SOCKS_PROXY_TYPE="socks5" 
+ENV PROXY_PORT="8124"
+ENV DNS_NAME_SERVER="8.8.8.8"
+EXPOSE 8124
+
+ADD files/start.sh /start.sh
+RUN chmod +x /start.sh
+ENTRYPOINT ["/start.sh"]
+CMD []
