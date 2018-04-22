@@ -12,14 +12,20 @@
 # Base docker image
 
 
-FROM ubuntu:14.04
-LABEL maintainer "evoup <evoex123@gmail.com>"
-ARG use_source_mirror
-ARG use_proxy
+#FROM ubuntu:14.04
+#LABEL maintainer "evoup <evoex123@gmail.com>"
+#ARG use_source_mirror
+#ARG use_proxy
+FROM evoup/jvm
 
-RUN if [ "x$use_source_mirror" = "x" ] ; then echo not use yum mirror ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
-RUN apt-get update
-RUN apt-get install wget -y
+
+
+
+
+
+#RUN if [ "x$use_source_mirror" = "x" ] ; then echo not use yum mirror ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
+#RUN apt-get update
+#RUN apt-get install wget -y
 
 #ENV GOPATH /root/go
 #ENV GOBIN /usr/local/go/bin/
