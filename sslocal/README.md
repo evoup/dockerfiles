@@ -7,25 +7,24 @@ Quick Start
 -----------
 Use entrypoint to config your container.
 
-    docker run -d -p $SOCKS5_PORT:$SOCKS5_PORT wldf/docker-sslocal \
-                    -b 0.0.0.0 \
-                    -s $SS_SERVER_ADDRESS \
-                    -p $SS_SERVER_PORT \
-                    -l $SOCKS5_PORT \
-                    -k $SS_PASSWORD \
-                    -m ENCRYPTION_METHOD
+    docker run -d -p $SOCKS5_PORT:$SOCKS5_PORT -e BIND_ADDRESS="0.0.0.0" \
+                    -e SS_SERVER_ADDRESS="45.78.40.187" \
+                    -e SS_SERVER_PORT="19388" \
+                    -e SOCKS5_PORT="1081" \
+                    -e SS_PASSWORD="passwd" \
+                    -e ENCRYPTION_METHOD="aes-256-cfb" \
+                    --name sslocal evoup/sslocal
 
 　　  
 This is a example, socks5 proxy will start listening on port 1080.
 
 
-    docker run -d -p $1080:$1080 wldf/docker-sslocal \
-                    -b 0.0.0.0 \
-                    -s 9.9.9.9 \
-                    -p 1984 \
-                    -l 1090 \
-                    -k 1024 \
-                    -m chacha20
-
+    docker run -d -p 10800:1081 -e BIND_ADDRESS="0.0.0.0" \
+                    -e SS_SERVER_ADDRESS="45.78.40.187" \
+                    -e SS_SERVER_PORT="19388" \
+                    -e SOCKS5_PORT="1081" \
+                    -e SS_PASSWORD="passwd" \
+                    -e ENCRYPTION_METHOD="aes-256-cfb" \
+                    --name sslocal evoup/sslocal
 -----------
 For more information, see [zhenkyle/docker-sslocal](https://github.com/zhenkyle/docker-sslocal).
