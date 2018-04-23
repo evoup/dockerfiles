@@ -10,10 +10,10 @@
 #after run, use these command build agent
 #  cd /root/go/src/madmonitor2
 #  go build madmonitor2.go
-#  go build --buildmode=plugin -o /usr/lib/madmonitor2/sysload.so collectors/sysload.go
-#  go build --buildmode=plugin -o /usr/lib/madmonitor2/ifstat.so collectors/ifstat.go
-#  go build --buildmode=plugin -o /usr/lib/madmonitor2/dfstat.so collectors/dfstat.go
-#  go build --buildmode=plugin -o /usr/lib/madmonitor2/procstats.so collectors/procstats.go
+#  go build --buildmode=plugin -o /usr/local/lib/madmonitor2/sysload.so collectors/sysload.go
+#  go build --buildmode=plugin -o /usr/local/lib/madmonitor2/ifstat.so collectors/ifstat.go
+#  go build --buildmode=plugin -o /usr/local/lib/madmonitor2/dfstat.so collectors/dfstat.go
+#  go build --buildmode=plugin -o /usr/local/lib/madmonitor2/procstats.so collectors/procstats.go
 ##################################################################################
 
 # Base docker image
