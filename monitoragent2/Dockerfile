@@ -7,14 +7,6 @@
 # following command to run:
 #docker run --privileged=true --name monitoragent2 -P -ti -d -v ~/projects/gitProjects/monitor_pass/madmonitor2/go/src/madmonitor2:/root/go/src/madmonitor2 --ip 172.18.0.57 --net b0 --hostname montioragent2 evoup/monitoragent2:ubuntu14.04
 ##################################################################################
-#after run, use these command build agent
-#  cd /root/go/src/madmonitor2
-#  go build madmonitor2.go
-#  go build --buildmode=plugin -o /usr/local/lib/madmonitor2/sysload.so collectors/sysload.go
-#  go build --buildmode=plugin -o /usr/local/lib/madmonitor2/ifstat.so collectors/ifstat.go
-#  go build --buildmode=plugin -o /usr/local/lib/madmonitor2/dfstat.so collectors/dfstat.go
-#  go build --buildmode=plugin -o /usr/local/lib/madmonitor2/procstats.so collectors/procstats.go
-##################################################################################
 
 # Base docker image
 
@@ -42,7 +34,6 @@ ENV PATH $GOBIN:$PATH
 RUN go get github.com/antonholmquist/jason
 RUN go get github.com/takama/daemon
 ADD files/golang_pkg/golang.org.bz2 /root/go/src/
-RUN mkdir /usr/lib/madmonitor2
 
 
 ADD files/start.sh /start.sh
