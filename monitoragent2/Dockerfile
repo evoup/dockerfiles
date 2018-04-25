@@ -18,7 +18,7 @@ RUN if [ "x$use_apt_mirror" = "x" ] ; then echo "use default apt source mirror" 
 RUN if [ "x$use_apt_mirror" = "x" ] ; then echo "use default apt source mirror" ; else sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
 
 RUN apt-get update
-RUN apt-get install wget -y
+RUN apt-get install wget sysstat -y
 
 #ENV GOPATH /root/go
 #ENV GOBIN /usr/local/go/bin/
