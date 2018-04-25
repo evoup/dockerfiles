@@ -1,6 +1,9 @@
 #!/bin/sh
 
-cat /tmp/hosts >> /etc/hosts
+# if we don`t use swarm, also we can use bridge network 
+if [ -e /usr/share/hosts ]
+    cat /usr/share/hosts >> /etc/hosts
+fi
 
 echo "server.1=zk1:2888:3888" >> /etc/zookeeper/conf/zoo.cfg
 echo "server.2=zk2:2888:3888" >> /etc/zookeeper/conf/zoo.cfg
