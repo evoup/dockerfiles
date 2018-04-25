@@ -32,7 +32,7 @@ EXPOSE 2181 2888 3888 18050
 RUN yum -y clean all
 RUN yum -y install java-1.7.0-openjdk zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
 
-ADD files/hosts /tmp/hosts
+#ADD files/hosts /tmp/hosts
 
 
 ADD files/start.sh /start.sh
