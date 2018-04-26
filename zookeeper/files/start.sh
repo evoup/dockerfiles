@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # if we don`t use swarm, also we can use bridge network 
-if [ -e /usr/share/hosts ]
+if [ -e "/usr/share/hosts" ]
+then
     cat /usr/share/hosts >> /etc/hosts
 fi
 
