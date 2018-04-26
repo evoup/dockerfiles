@@ -23,3 +23,4 @@ ADD files/server.properties /opt/kafka/config/server.properties
 RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk \
         && apk add --no-cache --allow-untrusted glibc-${GLIBC_VERSION}.apk \
         && rm glibc-${GLIBC_VERSION}.apk
+ENTRYPOINT ["/opt/kafka/bin/kafka-server-start.sh", "/opt/kafka/config/server.properties"]
