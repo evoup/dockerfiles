@@ -110,4 +110,4 @@ ADD files/hosts /tmp/hosts
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh
 ENTRYPOINT ["/start.sh"]
-CMD []
+#CMD []
