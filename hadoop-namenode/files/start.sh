@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [ -d "/etc/hadoop/conf.my_cluster" ]
-    echo "already inited"
 then
+    echo "already inited"
 else
     cat /tmp/hosts >> /etc/hosts
     cp -r /etc/hadoop/conf.empty /etc/hadoop/conf.my_cluster
