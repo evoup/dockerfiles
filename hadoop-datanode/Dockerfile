@@ -77,7 +77,7 @@ EXPOSE 4242
 
 
 
-ADD files/hosts /tmp/hosts
+ADD files/hosts /hosts
 
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh

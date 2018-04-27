@@ -38,4 +38,4 @@ RUN yum -y install java-1.7.0-openjdk zookeeper zookeeper-server && mkdir -p /va
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh
 ENTRYPOINT ["/start.sh"]
-CMD []
+#CMD []
