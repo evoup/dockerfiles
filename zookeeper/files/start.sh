@@ -2,7 +2,7 @@
 
 cat /hosts >> /etc/hosts
 
-if [ -d /usr/share/zooInited ] ; then
+if [ -d "/usr/share/zooInited" ] ; then
 else
     echo "server.1=zk1:2888:3888" >> /etc/zookeeper/conf/zoo.cfg
     echo "server.2=zk2:2888:3888" >> /etc/zookeeper/conf/zoo.cfg
