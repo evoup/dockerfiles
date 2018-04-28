@@ -30,12 +30,11 @@ ADD files/.bash_profile /root/.bash_profile
 EXPOSE 2181 2888 3888 18050
 
 RUN yum -y clean all
-RUN yum -y install java-1.7.0-openjdk zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
+RUN yum -y install java-1.8.0-openjdk zookeeper zookeeper-server && mkdir -p /var/lib/zookeeper && chown -R zookeeper /var/lib/zookeeper/
 
-#ADD files/hosts /tmp/hosts
+ADD files/hosts /hosts
 
 
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh
 ENTRYPOINT ["/start.sh"]
-#CMD []
