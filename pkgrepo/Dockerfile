@@ -1,9 +1,7 @@
 # Run pkgrepo httpserver in a container
-# correspond to cdh version is cdh5.13.0
-#without proxy: docker build -t evoup/cdh5repo . 
-#to use proxy: docker build -t evoup/cdh5repo --build-arg use_proxy=172.18.0.1:8123 .
-#if use yum mirror,docker build -t evoup/cdh5repo --build-arg use_source_mirror=1 .
-#which 172.18.0.1 is interface docker0`s ip(if in mac,it mean`s host ip),and run polipo with sslocal on docker.
+#without proxy: docker build -t evoup/pkgrepo . 
+#to use proxy: docker build -t evoup/pkgrepo --build-arg use_proxy=172.18.0.1:8123 .
+#if use yum mirror, add --build-arg use_source_mirror=1 for building command
 
 ## If just used predownloaded image
 ##################################################################################
@@ -31,11 +29,11 @@ RUN yum -y install openssh-server openssh-clients wget epel-release
 RUN yum -y update
 RUN yum -y install nginx wget 
 RUN if [ "x$use_proxy" = "x" ] ; then echo not using proxy ; else export all_proxy="$use_proxy" ; fi
-RUN cd /etc/yum.repos.d/ && wget https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo -O cloudera-cdh5.repo 
-RUN yum -y update 
-RUN yum -y install yum-utils createrepo
 
 EXPOSE 80
 
 RUN mkdir /usr/share/nginx/html/pkg
-ENTRYPOINT ["/etc/init.d/nginx", "start"]
+RUN wget https://github.com/OpenTSDB/opentsdb/releases/download/v2.4.0RC2/opentsdb-2.4.0RC2.noarch.rpm -O /usr/share/nginx/html/pkg/opentsdb-2.4.0RC2.noarch.rpm
+ADD files/start.sh /start.sh
+RUN chmod +x /start.sh
+CMD ["/start.sh"]
