@@ -1,7 +1,7 @@
 # Run hadoop in a container
 #first run zk1 zk2 zk3 in zookeeper step
 #docker run -ti -d --privileged=true --name namenode1 -p2206:22 -p50070:50070 --ip 172.18.0.53 --net b0 --hostname namenode1 evoup/hadoop-namenode
-#docker build --network b0 -t evoup/hadoop-namenode . 
+#docker build --network b0 -t evoup/hadoop-namenode --build-arg cdh5repo_local_port=`docker ps|grep cdh5repo|sed 's/.*0.0.0.0://g'|sed 's/->.*//g'` . 
 
 #according this page to configure, and this time we just have a look, we already configed most of all already!
 #http://www.cloudera.com/documentation/cdh/5-1-x/CDH5-Installation-Guide/cdh5ig_hdfs_cluster_deploy.html
@@ -41,13 +41,15 @@
 
 FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
+ARG cdh5repo_local_port
 ADD CentOS-Base.repo /etc/yum.repos.d/ 
 RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget epel-release sudo
 RUN yum -y update
 
 ADD cloudera-cdh5.repo /etc/yum.repos.d/cloudera-cdh5.repo 
-RUN echo baseurl=http://cdh5repo/cdh/5/ >> /etc/yum.repos.d/cloudera-cdh5.repo
+#RUN echo baseurl=http://cdh5repo/cdh/5/ >> /etc/yum.repos.d/cloudera-cdh5.repo
+RUN echo baseurl=http://`/sbin/ip route|awk '/default/ { print $3 }'`:${cdh5repo_local_port}/cdh/5/ >> /etc/yum.repos.d/cloudera-cdh5.repo
 RUN curl http://archive.cloudera.com/gplextras5/redhat/5/x86_64/gplextras/cloudera-gplextras5.repo > /etc/yum.repos.d/cloudera-gplextras5.repo
 RUN yum -y update
 
