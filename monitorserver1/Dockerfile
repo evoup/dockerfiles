@@ -1,9 +1,9 @@
 # Run monitorserver1 in a container
-# (first create network: docker network create --subnet=172.19.0.0/16 b0)[no need for now, deprecated]
+# (first create network: docker network create --subnet=172.18.0.0/16 b0)
 # if use use_source_mirror and use gitee: docker build -t evoup/monitorserver1 --build-arg use_source_mirror=1 --build-arg gitee_passwd=xxx .
 # default and use github:  docker build -t evoup/monitorserver1 .
-# docker run --name monitorserver1_1 --privileged=true -p8004:80 -ti -d --ip 172.17.0.30 --net bridge --hostname monitorserver1_1 -v /home/evoup/projects/gitProjects/monitor_pass:/var/www/html/monitor_pass evoup/monitorserver1
-# docker run --name monitorserver1_2 --privileged=true -p8005:80 -ti -d --ip 172.17.0.31 --net bridge --hostname monitorserver1_2 -v /home/evoup/projects/gitProjects/monitor_pass:/var/www/html/monitor_pass evoup/monitorserver1
+# docker run --name monitorserver1_1 --privileged=true -p8004:80 -ti -d --ip 172.18.0.30 --net b0 --hostname monitorserver1_1 -v /home/evoup/projects/gitProjects/monitor_pass:/var/www/html/monitor_pass evoup/monitorserver1
+# docker run --name monitorserver1_2 --privileged=true -p8005:80 -ti -d --ip 172.18.0.31 --net b0 --hostname monitorserver1_2 -v /home/evoup/projects/gitProjects/monitor_pass:/var/www/html/monitor_pass evoup/monitorserver1
 # docker exec -it monitorserver1 /bin/tcsh
 
 # Base docker image

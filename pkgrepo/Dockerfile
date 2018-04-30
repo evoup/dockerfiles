@@ -1,6 +1,6 @@
 # Run pkgrepo httpserver in a container
 #without proxy: docker build -t evoup/pkgrepo . 
-#to use proxy: docker build -t evoup/pkgrepo --build-arg use_proxy=172.17.0.1:8123 .
+#to use proxy: docker build -t evoup/pkgrepo --build-arg use_proxy=172.18.0.1:8123 .
 #if use yum mirror, add --build-arg use_source_mirror=1 for building command
 
 ## If just used predownloaded image

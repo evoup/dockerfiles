@@ -1,7 +1,7 @@
 # Run zookeeper in a container
-#docker run --name zk1 --privileged=true -p28050:18050  -ti -d --ip 172.17.0.50 --net bridge --hostname zk1 evoup/zookeeper 1
-#docker run --name zk2 --privileged=true -p28051:18050  -ti -d --ip 172.17.0.51 --net bridge --hostname zk2 evoup/zookeeper 2
-#docker run --name zk3 --privileged=true -p28052:18050  -ti -d --ip 172.17.0.52 --net bridge --hostname zk3 evoup/zookeeper 3
+#docker run --name zk1 --privileged=true -p28050:18050  -ti -d --ip 172.18.0.50 --net b0 --hostname zk1 evoup/zookeeper 1
+#docker run --name zk2 --privileged=true -p28051:18050  -ti -d --ip 172.18.0.51 --net b0 --hostname zk2 evoup/zookeeper 2
+#docker run --name zk3 --privileged=true -p28052:18050  -ti -d --ip 172.18.0.52 --net b0 --hostname zk3 evoup/zookeeper 3
 #(which last 1 is zookeeper`s myid, we can change it for our purpose.)
 
 # Base docker image
