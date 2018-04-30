@@ -1,7 +1,7 @@
 #Run kafka in docker containeRun kafka in docker container
 #files/server.properties just different from /opt/kafka/config/server.properties with changing zookeeper.connect=localhost:2181 to zookeeper.connect=zk1:2181,zk2:2181,zk3:2181
 #docker build -t evoup/kafka .
-#docker run --privileged=true --name kafka -ti -d -p9092:9092 --net b0 --hostname kafka evoup/kafka 
+#docker run --privileged=true --name kafka -ti -d -P --net b0 --hostname kafka evoup/kafka 
 #FROM centos:6.9
 FROM openjdk:8u151-jre-alpine
 
@@ -23,4 +23,5 @@ ADD files/server.properties /opt/kafka/config/server.properties
 RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk \
         && apk add --no-cache --allow-untrusted glibc-${GLIBC_VERSION}.apk \
         && rm glibc-${GLIBC_VERSION}.apk
+EXPOSE 9092
 ENTRYPOINT ["/opt/kafka/bin/kafka-server-start.sh", "/opt/kafka/config/server.properties"]
