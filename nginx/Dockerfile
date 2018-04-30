@@ -1,5 +1,5 @@
 #Run nginx in a container
-# docker run --name nginx --privileged=true -p8006:80 -ti -d --ip 172.18.0.32 --net b0 --hostname nginx evoup/nginx
+# docker run --name nginx --privileged=true -p8006:80 -ti -d --ip 172.17.0.32 --net b0 --hostname nginx evoup/nginx
 
 FROM ubuntu:16.04
 LABEL maintainer "evoup <evoex123@gmail.com>"
