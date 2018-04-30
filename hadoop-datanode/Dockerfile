@@ -1,6 +1,6 @@
 # Run hadoop in a container
 #
-#docker run --privileged=true --name datanode1 -p2207:22 -p19888:19888 -ti -d --ip 172.18.0.54 --net b0 --hostname datanode1 evoup/hadoop-datanode
+#docker run --privileged=true --name datanode1 -p19888:19888 -ti -d --ip 172.18.0.54 --net b0 --hostname datanode1 evoup/hadoop-datanode
 #if installed opentsdb by installOpenTsdb.sh in namenode`s dockefile, run following command to expose opentsdb port 4242 to 14242:
 #docker run --privileged=true --name datanode1 -p2207:22 -p19888:19888 -p14242:4242 -ti -d --ip 172.18.0.54 --net b0 --hostname datanode1 evoup/hadoop-datanode
 
