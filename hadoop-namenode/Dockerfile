@@ -41,7 +41,8 @@
 
 FROM centos:6.9
 LABEL maintainer "evoup <evoex123@gmail.com>"
-ARG cdh5repo_local_port
+ARG CDH5REPO_LOCAL_PORT
+ENV CDH5REPO_LOCAL_PORT=${CDH5REPO_LOCAL_PORT}
 ADD CentOS-Base.repo /etc/yum.repos.d/ 
 RUN yum -y update
 RUN yum -y install openssh-server openssh-clients wget epel-release sudo
@@ -49,7 +50,7 @@ RUN yum -y update
 
 ADD cloudera-cdh5.repo /etc/yum.repos.d/cloudera-cdh5.repo 
 #RUN echo baseurl=http://cdh5repo/cdh/5/ >> /etc/yum.repos.d/cloudera-cdh5.repo
-RUN echo baseurl=http://`/sbin/ip route|awk '/default/ { print $3 }'`:"$cdh5repo_local_port"/cdh/5/ >> /etc/yum.repos.d/cloudera-cdh5.repo
+RUN echo baseurl=http://`/sbin/ip route|awk '/default/ { print $3 }'`:${CDH5REPO_LOCAL_PORT}/cdh/5/ >> /etc/yum.repos.d/cloudera-cdh5.repo
 RUN curl http://archive.cloudera.com/gplextras5/redhat/5/x86_64/gplextras/cloudera-gplextras5.repo > /etc/yum.repos.d/cloudera-gplextras5.repo
 RUN yum -y update
 
