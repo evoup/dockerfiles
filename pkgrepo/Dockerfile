@@ -7,7 +7,7 @@
 ##################################################################################
 # following command to run:
 # docker pull evoup/pkgrepo
-# docker run -ti -d --net b0 --hostname pkgrepo --name pkgrepo evoup/pkgrepo
+# docker run -ti -d -P --net b0 --hostname pkgrepo --name pkgrepo evoup/pkgrepo
 #while building our docker image, it will visit host`s 80 port to fetch rpm or deb package, and the speed is so fast:)
 ##################################################################################
 
