@@ -1,7 +1,7 @@
 #Run kafka in docker containeRun kafka in docker container
 #files/server.properties just different from /opt/kafka/config/server.properties with changing zookeeper.connect=localhost:2181 to zookeeper.connect=zk1:2181,zk2:2181,zk3:2181
 #docker build -t evoup/kafka .
-#docker run --privileged=true --name kafka -ti -d -P --net b0 --hostname kafka evoup/kafka 
+#docker run --privileged=true --name kafka -ti -d -p 9092:9092 --net b0 --hostname kafka evoup/kafka 
 #FROM centos:6.9
 FROM openjdk:8u151-jre-alpine
 
