@@ -6,7 +6,7 @@
 
 #docker run --privileged=true --name datanode2 -p2208:22 -ti -d --ip 172.18.0.55 --net b0 --hostname datanode2 evoup/hadoop-datanode
 # 19888 is historyserver e.g. http://datanode1:19888/jobhistory
-# docker build --network b0 -t evoup/hadoop-datanode . 
+#use buildImage.sh to build image
 
 # Base docker image
 
