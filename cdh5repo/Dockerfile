@@ -9,7 +9,7 @@
 ##################################################################################
 # following command to run:
 # docker pull evoup/cdh5repo
-# docker run -ti -d --net b0 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
+# docker run -ti -d -P --net b0 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
 #while building hadoop image, it will visit host`s 80 port to fetch cdh package, and the speed is so fast:)
 ##################################################################################
 
