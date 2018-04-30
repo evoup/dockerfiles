@@ -1,21 +1,21 @@
 # Run cdh5repo httpserver in a container
 # correspond to cdh version is cdh5.13.0
 #without proxy: docker build -t evoup/cdh5repo . 
-#to use proxy: docker build -t evoup/cdh5repo --build-arg use_proxy=172.17.0.1:8123 .
+#to use proxy: docker build -t evoup/cdh5repo --build-arg use_proxy=172.18.0.1:8123 .
 #if use yum mirror,docker build -t evoup/cdh5repo --build-arg use_source_mirror=1 .
-#which 172.17.0.1 is interface docker0`s ip(if in mac,it mean`s host ip),and run polipo with sslocal on docker.
+#which 172.18.0.1 is interface docker0`s ip(if in mac,it mean`s host ip),and run polipo with sslocal on docker.
 
 ## If just used presynced image
 ##################################################################################
 # following command to run:
 # docker pull evoup/cdh5repo
-# docker run -ti -d -P --net bridge --hostname cdh5repo --name cdh5repo evoup/cdh5repo
+# docker run -ti -d -P --net b0 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
 #while building hadoop image, it will visit host`s 80 port to fetch cdh package, and the speed is so fast:)
 ##################################################################################
 
 ## If build and sync repo from zero start
 # first run:
-# docker run -ti -d --net bridge --hostname cdh5repo --name cdh5repo evoup/cdh5repo
+# docker run -ti -d --net b0 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
 #(after run, docker exec -it cdh5repo /bin/bash
 #then type sh: 
 # $export all_proxy=xxx.xxx.xxx.xxx:8123
@@ -28,7 +28,7 @@
 #On your web server, issue the following command from the 5/ subdirectory of your RPM directory:
 # $createrepo .
 #)
-#docker run -ti -d --ip 172.17.0.49 --net bridge -v ~/project/dockerRelative:/var/www/html/ -p 8003:80 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
+#docker run -ti -d --ip 172.18.0.49 --net b0 -v ~/project/dockerRelative:/var/www/html/ -p 8003:80 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
 
 
 # Base docker image

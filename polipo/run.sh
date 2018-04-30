@@ -1,5 +1,5 @@
 #!/bin/sh
-#(may be first create network: docker network create --subnet=172.19.0.0/16 b0)
+#(may be first create network: docker network create --subnet=172.18.0.0/16 b0)
 
 
 docker run -d --name=polipo -p 8124:8124 --hostname=polipo -e PROXY_ADDRESS="0.0.0.0" \
