@@ -5,7 +5,7 @@
 #with apt mirror: docker build -t evoup/monitoragent2:ubuntu14.04 --build-arg use_apt_mirror=1 .
 ##################################################################################
 # following command to run:
-#docker run --privileged=true --name monitoragent2 -P -ti -d -v ~/projects/gitProjects/monitor_pass/madmonitor2/go/src/madmonitor2:/root/go/src/madmonitor2 --ip 172.18.0.57 --net b0 --hostname montioragent2 evoup/monitoragent2:ubuntu14.04
+#docker run --privileged=true --name monitoragent2 -P -ti -d -v ~/projects/gitProjects/monitor_pass/madmonitor2/go/src/madmonitor2:/root/go/src/madmonitor2 --ip 172.17.0.57 --net b0 --hostname montioragent2 evoup/monitoragent2:ubuntu14.04
 ##################################################################################
 
 # Base docker image

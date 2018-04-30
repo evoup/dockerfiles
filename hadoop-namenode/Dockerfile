@@ -1,7 +1,7 @@
 # Run hadoop in a container
 #first run zk1 zk2 zk3 in zookeeper step
-#docker run -ti -d --privileged=true --name namenode1 -p2206:22 -p50070:50070 --ip 172.18.0.53 --net b0 --hostname namenode1 evoup/hadoop-namenode
-#docker build --network b0 -t evoup/hadoop-namenode --build-arg cdh5repo_local_port=`docker ps|grep cdh5repo|sed 's/.*0.0.0.0://g'|sed 's/->.*//g'` . 
+#docker run -ti -d --privileged=true --name namenode1 -p2206:22 -p50070:50070 --ip 172.17.0.53 --net bridge --hostname namenode1 evoup/hadoop-namenode
+#docker build --network bridge -t evoup/hadoop-namenode --build-arg cdh5repo_local_port=`docker ps|grep cdh5repo|sed 's/.*0.0.0.0://g'|sed 's/->.*//g'` . 
 
 #according this page to configure, and this time we just have a look, we already configed most of all already!
 #http://www.cloudera.com/documentation/cdh/5-1-x/CDH5-Installation-Guide/cdh5ig_hdfs_cluster_deploy.html
