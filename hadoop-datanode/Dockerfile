@@ -1,10 +1,10 @@
 # Run hadoop in a container
 #
-#docker run --privileged=true --name datanode1 -p19888:19888 -ti -d --ip 172.18.0.54 --net b0 --hostname datanode1 evoup/hadoop-datanode
+#docker run --privileged=true --name datanode1 -P -p19888:19888 -ti -d --ip 172.18.0.54 --net b0 --hostname datanode1 evoup/hadoop-datanode
 #if installed opentsdb by installOpenTsdb.sh in namenode`s dockefile, run following command to expose opentsdb port 4242 to 14242:
-#docker run --privileged=true --name datanode1 -p19888:19888 -p14242:4242 -ti -d --ip 172.18.0.54 --net b0 --hostname datanode1 evoup/hadoop-datanode
+#docker run --privileged=true --name datanode1 -P -p19888:19888 -p14242:4242 -ti -d --ip 172.18.0.54 --net b0 --hostname datanode1 evoup/hadoop-datanode
 
-#docker run --privileged=true --name datanode2 -ti -d --ip 172.18.0.55 --net b0 --hostname datanode2 evoup/hadoop-datanode
+#docker run --privileged=true --name datanode2 -P -ti -d --ip 172.18.0.55 --net b0 --hostname datanode2 evoup/hadoop-datanode
 # 19888 is historyserver e.g. http://datanode1:19888/jobhistory
 #use buildImage.sh to build image
 
@@ -36,8 +36,6 @@ ADD files/bashrc /etc/bashrc
 ADD files/.bashrc /root/.bashrc
 ADD files/.bash_profile /root/.bash_profile
 
-EXPOSE 22
-
 RUN yum -y clean all
 
 RUN yum update -y libselinux
@@ -63,20 +61,23 @@ ADD RPM-GPG-KEY-cloudera /tmp/RPM-GPG-KEY-cloudera
 RUN rpm --import /tmp/RPM-GPG-KEY-cloudera
 
 
-RUN yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel 
-RUN yum -y install hadoop-yarn-nodemanager hadoop-hdfs-datanode hadoop-mapreduce hadoop-lzo
+RUN yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel hadoop-yarn-nodemanager hadoop-hdfs-datanode hadoop-mapreduce hadoop-lzo
 
-
+# ssh port
+#EXPOSE 2122
 # Hdfs ports
-EXPOSE 50010 50020 50070 50075 50090 8020 9000
+#EXPOSE 50010 50020 50070 50075 50090 8020 9000
 # Mapred ports
-EXPOSE 10020 19888
+#EXPOSE 10020 19888
 # Yarn ports
-EXPOSE 8030 8031 8032 8033 8040 8042 8088
+#EXPOSE 8030 8031 8032 8033 8040 8042 8088
+# hbase thrift
+#EXPOSE 9090
 # Other ports
-EXPOSE 49707 2122
+#EXPOSE 49707 2122
 # obligate for opentsdb
-EXPOSE 4242
+#EXPOSE 4242
+EXPOSE 2122 50010 50020 50070 50075 50090 8020 9000 10020 19888 8030 8031 8032 8033 8040 8042 8088 9090 49707 2122 4242
 
 
 
