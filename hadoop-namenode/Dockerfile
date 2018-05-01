@@ -1,6 +1,6 @@
 # Run hadoop in a container
 #first run zk1 zk2 zk3 in zookeeper step
-#docker run -ti -d --privileged=true --name namenode1 -p50070:50070 --ip 172.18.0.53 --net b0 --hostname namenode1 evoup/hadoop-namenode
+#docker run -ti -d --privileged=true --name namenode1 -P -p50070:50070 --ip 172.18.0.53 --net b0 --hostname namenode1 evoup/hadoop-namenode
 #use buildImage.sh to build image 
 
 #according this page to configure, and this time we just have a look, we already configed most of all already!
@@ -64,8 +64,6 @@ ADD files/bashrc /etc/bashrc
 ADD files/.bashrc /root/.bashrc
 ADD files/.bash_profile /root/.bash_profile
 
-EXPOSE 22
-
 RUN yum -y clean all
 
 RUN yum update -y libselinux
@@ -96,21 +94,23 @@ RUN yum -y install hadoop-yarn-resourcemanager
 RUN yum -y install hadoop-hdfs-namenode
 RUN yum -y install hadoop-lzo
 
-
+# ssh port
+#EXPOSE 2122
 # Hdfs ports
-EXPOSE 50010 50020 50070 50075 50090 8020 9000
+#EXPOSE 50010 50020 50070 50075 50090 8020 9000
 # Mapred ports
-EXPOSE 10020 19888
+#EXPOSE 10020 19888
 #Yarn ports
-EXPOSE 8030 8031 8032 8033 8040 8042 8088
+#EXPOSE 8030 8031 8032 8033 8040 8042 8088
+#hbase thrift port
+#EXPOSE 9090
 #Other ports
-EXPOSE 49707 2122
+#EXPOSE 49707
 
-
+EXPOSE 2122 50010 50020 50070 50075 50090 8020 9000 10020 19888 8030 8031 8032 8033 8040 8042 8088 9090 49707
 
 ADD files/hosts /hosts
 
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh
 ENTRYPOINT ["/start.sh"]
-#CMD []
