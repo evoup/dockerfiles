@@ -1,6 +1,6 @@
 # Run monitoragent2 in a container
 # do not use golang over 1.9.x, plugin is unstable
-#to build ubuntu version, git checkout master and run build or docker pull evoup/monitoragent2:ubuntu
+#to build ubuntu version, git checkout master and run build or docker pull evoup/monitoragent2:ubuntu14.04
 #without apt mirror: docker build -t evoup/monitoragent2:ubuntu14.04 .
 #with apt mirror: docker build -t evoup/monitoragent2:ubuntu14.04 --build-arg use_apt_mirror=1 .
 ##################################################################################
