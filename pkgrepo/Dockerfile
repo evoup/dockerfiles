@@ -33,7 +33,8 @@ RUN if [ "x$use_proxy" = "x" ] ; then echo not using proxy ; else export all_pro
 EXPOSE 80
 
 RUN mkdir /usr/share/nginx/html/pkg
-RUN wget https://github.com/OpenTSDB/opentsdb/releases/download/v2.4.0RC2/opentsdb-2.4.0RC2.noarch.rpm -O /usr/share/nginx/html/pkg/opentsdb-2.4.0RC2.noarch.rpm
+#RUN wget https://github.com/OpenTSDB/opentsdb/releases/download/v2.4.0RC2/opentsdb-2.4.0RC2.noarch.rpm -O /usr/share/nginx/html/pkg/opentsdb-2.4.0RC2.noarch.rpm
+RUN wget https://github.com/OpenTSDB/opentsdb/releases/download/v2.3.1/opentsdb-2.3.1.noarch.rpm -O /usr/local/share/nginx/html/pkg/opentsdb-2.3.1.noarch.rpm 
 ADD files/start.sh /start.sh
 RUN chmod +x /start.sh
 CMD ["/start.sh"]
