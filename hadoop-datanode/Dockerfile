@@ -79,6 +79,9 @@ RUN yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel hadoop-yarn-nodem
 #EXPOSE 4242
 EXPOSE 2122 50010 50020 50070 50075 50090 8020 9000 10020 19888 8030 8031 8032 8033 8040 8042 8088 9090 49707 2122 4242
 
+#also expose 10 port for customize app for future
+EXPOSE 8090 8091 8092 8093 8094 8095 8096 8097 8098 8099 
+
 
 
 ADD files/hosts /hosts
