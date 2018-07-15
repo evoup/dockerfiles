@@ -14,3 +14,4 @@ RUN wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
 RUN echo 'deb http://packages.elastic.co/logstash/2.2/debian stable main' | tee /etc/apt/sources.list.d/logstash-2.2.x.list
 RUN apt-get update
 RUN apt-get install logstash -y
+RUN /opt/logstash/bin/plugin install logstash-output-kafka
