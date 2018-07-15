@@ -27,7 +27,7 @@ ARG gitee_passwd
 #ADD http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz /src/zookeeper-3.4.6.tar.gz
 
 #RUN sed -i 's/httpredir.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-RUN if [ "x$use_source_mirror" = "x" ] ; then echo not use yum mirror ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
+RUN if [ "x$use_source_mirror" = "x" ] ; then echo not use mirror ; else sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list ; fi
 RUN apt-get update
 RUN apt-get install libmemcache-dev libz-dev libxml2-dev libmemcache-dev build-essential m4 git autoconf libjpeg-dev libpng-dev libcurl4-gnutls-dev libfreetype6-dev libmcrypt-dev wget unzip libnet-ifconfig-wrapper-perl nginx lsof inetutils-syslogd tcsh vim python python-pip libzookeeper-mt-dev -y
 RUN export LC_ALL=C && pip install --upgrade pip
