@@ -46,14 +46,20 @@ then
     iptables_domain=`echo $URL_OVPN_FILES | awk -F/ '{print $3}'`
     iptables  -A OUTPUT -o eth0 -d $iptables_domain -j ACCEPT
     ip6tables -A OUTPUT -o eth0 -d $iptables_domain -j ACCEPT 2> /dev/null
-    curl -s $URL_OVPN_FILES -o /tmp/ovpn.zip
+    [ -z $PROXY ] && curl -s $URL_OVPN_FILES -o /tmp/ovpn.zip
+    [ ! -z $PROXY ] && curl -x $PROXY -s $URL_OVPN_FILES -o /tmp/ovpn.zip
     unzip -q /tmp/ovpn.zip -d /tmp/ovpn
     mv /tmp/ovpn/*/*.ovpn $ovpn_dir
     rm -rf /tmp/*
 fi
 
 # Use api.nordvpn.com
-servers=`curl -s $URL_NORDVPN_API`
+if [ -z $PROXY ]; then
+    servers=`curl -s $URL_NORDVPN_API`
+fi
+if [ ! -z $PROXY ]; then
+    servers=`curl -x $PROXY -s $URL_NORDVPN_API`
+fi
 servers=`echo $servers | jq -c '.[] | select(.features.openvpn_udp == true)' &&\
          echo $servers | jq -c '.[] | select(.features.openvpn_tcp == true)'`
 servers=`echo $servers | jq -s -a -c 'unique'`
@@ -152,7 +158,12 @@ if [ -z $config ]; then
     iptables_domain=`echo $URL_RECOMMENDED_SERVERS | awk -F/ '{print $3}'`
     iptables  -A OUTPUT -o eth0 -d $iptables_domain -j ACCEPT
     ip6tables -A OUTPUT -o eth0 -d $iptables_domain -j ACCEPT 2> /dev/null
-    recommendations=`curl -s $URL_RECOMMENDED_SERVERS | jq -r '.[] | .hostname' | shuf`
+    if [ -z $PROXY ]; then
+        recommendations=`curl -s $URL_RECOMMENDED_SERVERS | jq -r '.[] | .hostname' | shuf`
+    fi
+    if [ ! -z $PROXY ]; then
+        recommendations=`curl -x $PROXY -s $URL_RECOMMENDED_SERVERS | jq -r '.[] | .hostname' | shuf`
+    fi
     for server in ${recommendations}; do # Prefer UDP
         config_file="${ovpn_dir}/${server}.udp.ovpn"
         if [ -r "$config_file" ]; then
