@@ -1,6 +1,6 @@
 # Run nordvpn in a container
 #
-#docker build -t madhouse/nordvpn --build-arg proxy=localhost:8124 . 
+#docker build -t madhouse/nordvpn --build-arg proxy=172.17.0.1:8124 . 
 #docker run -ti --cap-add=NET_ADMIN --device /dev/net/tun --name vpn\
             #-e USER=user@email.com -e PASS=password
             #-e COUNRTY="country1;country2" -e CATEGORY=category1;category2 \
