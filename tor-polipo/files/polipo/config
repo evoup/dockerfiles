@@ -1,0 +1,11 @@
+# This file only needs to list configuration variables that deviate
+# from the default values.  See /usr/share/doc/polipo/examples/config.sample
+# and "polipo -v" for variables you can tweak and further information.
+
+logSyslog = true
+logFile = /var/log/polipo/polipo.log
+proxyAddress = "0.0.0.0"   # IPv4 only
+proxyPort=8130
+socksParentProxy = "localhost:9050"
+socksProxyType= socks5
+daemonise=true

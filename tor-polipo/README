@@ -1,0 +1,2 @@
+### tor with privoxy docker image
+docker run -itd -p 8118:8118 -p 9050:9050 --name mytor evoup/tor-privoxy
