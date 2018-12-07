@@ -13,7 +13,6 @@ RUN apt-get install tor -y
 EXPOSE 9050 8118
 
 ADD files/start.sh /start.sh
-ADD files/polipo/config /etc/polipo/config
 ADD files/tor/torrc /etc/tor/torrc
 RUN chmod 755 ./start.sh
 CMD ["./start.sh"]
