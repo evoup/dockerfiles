@@ -1,5 +1,12 @@
-version: "2"
+version: "3"
 services:
-   shadowsocks-libev:
-      image: shadowsocks/shadowsocks-libev
-      command: '-e PASSWORD=<password> -p<server-port>:8388 -p<server-port>:8388/udp -d' 
+  shadowsocks-libev:
+    container_name: shadowsocks
+    image: shadowsocks/shadowsocks-libev
+    environment:
+      - PASSWORD=password
+    ports:
+      - "31528:8338/tcp"
+      - "31528:8338/udp"
+    restart: always
+
