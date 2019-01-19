@@ -1,0 +1,5 @@
+version: "2"
+services:
+   shadowsocks-libev:
+      image: shadowsocks/shadowsocks-libev
+      command: '-e PASSWORD=<password> -p<server-port>:8388 -p<server-port>:8388/udp -d' 
