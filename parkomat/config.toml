@@ -19,14 +19,14 @@ hello world
 # each domain will use following zone settings
 [zone]
 # for both .domain and www.domain
-A = "127.0.0.1"
+A = "0.0.0.0"
 MX = '''
 1 test1.mail.server
 10 test2.mail.server
 '''
 
 [web]
-ip = "127.0.0.1"
+ip = "0.0.0.0"
 port = 80
 path = "./www"
 
@@ -42,14 +42,14 @@ password = "world"
 mount = "/dav/"
 
 [dns]
-ip = "127.0.0.1"
+ip = "0.0.0.0"
 port = 53
 
 # details of dns servers for NS record
 [[dns.servers]]
 name = "ns1.parkomat.co"
-ip = "127.0.0.1"
+ip = "0.0.0.0"
 
 [[dns.servers]]
 name = "ns2.parkomat.co"
-ip = "127.0.0.1"
+ip = "0.0.0.0"

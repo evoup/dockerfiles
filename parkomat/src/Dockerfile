@@ -1,11 +1,10 @@
-#FROM golang:1.10-alpine
-FROM golang:1.10
+FROM golang:1.10-alpine
 
 RUN mkdir -p /go/src/github.com/parkomat/parkomat
 
 COPY . /go/src/github.com/parkomat/parkomat
 
-#RUN apk add --update git
+RUN apk add --update git
 
 RUN mkdir -p /go/src/golang.org/x/
 
