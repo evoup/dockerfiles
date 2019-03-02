@@ -8,11 +8,11 @@ RUN apk add --update git
 
 RUN mkdir -p /go/src/golang.org/x/
 
-RUN git clone https://github.com/golang/sys.git /go/src/golang.org/x/
+RUN git clone https://github.com/golang/sys.git /go/src/golang.org/x/sys
 
-RUN git clone https://github.com/golang/text.git /go/src/golang.org/x/
+RUN git clone https://github.com/golang/text.git /go/src/golang.org/x/text
 
-RUN git clone https://github.com/golang/net.git /go/src/golang.org/x/
+RUN git clone https://github.com/golang/net.git /go/src/golang.org/x/net
 
 RUN go get github.com/parkomat/parkomat/...
 
