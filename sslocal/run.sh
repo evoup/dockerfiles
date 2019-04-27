@@ -5,5 +5,6 @@ docker run -d -p 10800:1081 -e BIND_ADDRESS="0.0.0.0" \
                             -e SOCKS5_PORT="1081" \
                             -e SS_PASSWORD="passwd" \
                             -e ENCRYPTION_METHOD="aes-256-cfb" \
+                            --restart always \
                             --name sslocal evoup/sslocal
 

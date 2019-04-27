@@ -7,5 +7,6 @@ docker run -d --name=polipo -p 8124:8124 --hostname=polipo -e PROXY_ADDRESS="0.0
                              -e SOCKS_PROXY_TYPE="socks5" \
                              -e PROXY_PORT="8124" \
                              -e DNS_NAME_SERVER="8.8.8.8" \
+                             --restart always \
                              --name polipo evoup/polipo
 
