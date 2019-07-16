@@ -19,7 +19,8 @@ RUN apk add --no-cache \
         python3-dev \
         zlib \
         zlib-dev \
-        certifi \
+        #certifi \
+        ca-certificates \
     && LDFLAGS=-L/lib pip install mitmproxy \
     && apk del --purge \
         g++ \
@@ -30,7 +31,8 @@ RUN apk add --no-cache \
         openssl-dev \
         python3-dev \
         zlib-dev \
-        certifi \
+        #certifi \
+        ca-certificates \
     && rm -rf ~/.cache/pip \
     && adduser -u 7799 -D mitmproxy
 
