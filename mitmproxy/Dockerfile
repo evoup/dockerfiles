@@ -2,10 +2,10 @@ FROM python:3.7-alpine
 
 # Note: We add a dummy xclip because we don't want to support clipboard
 # from within the container.
+RUN apk update
 RUN apk add --no-cache \
         bash \
         g++ \
-        py-pip \
         libffi \
         libffi-dev \
         libjpeg-turbo \
@@ -16,7 +16,6 @@ RUN apk add --no-cache \
         libxslt-dev \
         openssl \
         openssl-dev \
-        #python3 \
         python3-dev \
         zlib \
         zlib-dev \
@@ -24,7 +23,6 @@ RUN apk add --no-cache \
     && LDFLAGS=-L/lib pip install mitmproxy \
     && apk del --purge \
         g++ \
-        py-pip \
         libffi-dev \
         libjpeg-turbo-dev \
         libxml2-dev \
