@@ -24,6 +24,7 @@ RUN set -ex && \
 
 ENV PATH /usr/bin/v2ray:$PATH
 VOLUME ['/etc/v2ray/']
+COPY config.json /etc/v2ray/config.json.sample
 EXPOSE 1080
 
 CMD ["v2ray", "-config=/etc/v2ray/config.json"]
