@@ -1,0 +1,33 @@
+{
+  "inbounds": [{
+    "port": 1080,  // SOCKS Proxy port, you need to configure the proxy in the browser and point to this port
+    "listen": "0.0.0.0",
+    "protocol": "socks",
+    "settings": {
+      "udp": true
+    }
+  }],
+  "outbounds": [{
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [{
+        "address": "xx.xx.xx.xx", // server address
+        "port": 40298,  // server port
+        "users": [{ "id": "uuid" }]
+      }]
+    }
+  },{
+    "protocol": "freedom",
+    "tag": "direct",
+    "settings": {}
+  }],
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "rules": [{
+      "type": "field",
+      "ip": ["geoip:private"],
+      "outboundTag": "direct"
+    }]
+  }
+}
+
