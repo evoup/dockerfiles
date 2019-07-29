@@ -1,0 +1,23 @@
+version: '2.2'
+
+services:
+    tor_jp: # 日本
+        container_name: tor_jp
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/jp/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8120:8118"
+
+    tor_us: # 美国
+        container_name: tor_us
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/us/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8121:8118"
+
+volumes:
+    tor_data_volume:
