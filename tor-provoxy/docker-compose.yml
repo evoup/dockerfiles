@@ -19,5 +19,77 @@ services:
         ports:
             - "8121:8118"
 
+    tor_id: # 印尼
+        container_name: tor_id
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/id/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8122:8118"
+
+    tor_sg: # 新加坡
+        container_name: tor_sg
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/sg/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8123:8118"
+
+    tor_my: # 马来西亚
+        container_name: tor_my
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/my/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8124:8118"
+
+    tor_th: # 泰国
+        container_name: tor_th
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/th/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8125:8118"
+
+    tor_hk: # 香港
+        container_name: tor_hk
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/hk/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8126:8118"
+
+    tor_tw: # 台湾
+        container_name: tor_tw
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/tw/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8127:8118"
+
+    tor_kr: # 韩国
+        container_name: tor_kr
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/kr/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8128:8118"
+
+    tor_fr: # 法国
+        container_name: tor_fr
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/fr/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8129:8118"
+
 volumes:
     tor_data_volume:
