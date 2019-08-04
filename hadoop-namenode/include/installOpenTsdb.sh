@@ -1,7 +1,8 @@
 #!/bin/sh
 
 #install opentsdb
-local_port=`docker ps|grep pkgrepo|sed 's/.*0.0.0.0://g'|sed 's/->.*//g'`
+#local_port=`docker ps|grep pkgrepo|sed 's/.*0.0.0.0://g'|sed 's/->.*//g'`
+local_port=32771
 docker_host_ip=`docker exec datanode1 /sbin/ip route|awk '/default/ { print $3 }'`
 
 docker exec datanode1 yum install -y gnuplot
