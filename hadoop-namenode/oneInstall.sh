@@ -7,9 +7,10 @@ docker run --name zk1 --privileged=true -p28050:18050  -ti -d --ip 172.18.0.50 -
 docker run --name zk2 --privileged=true -p28051:18050  -ti -d --ip 172.18.0.51 --net b0 --hostname zk2 evoup/zookeeper 2
 docker run --name zk3 --privileged=true -p28052:18050  -ti -d --ip 172.18.0.52 --net b0 --hostname zk3 evoup/zookeeper 3
 echo "init cdh5 repo"
-docker run -tid -P --rm --net b0 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
+docker run -tid -p32770:80 --rm --net b0 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
 echo "init yum pkg repo server"
-docker run -tid -P --rm --net b0 --hostname pkgrepo --name pkgrepo evoup/pkgrepo
+docker run -tid -p32771:80 --rm --net b0 --hostname pkgrepo --name pkgrepo evoup/pkgrepo
+exit
 if [[ "$(docker images -q evoup/hadoop-namenode:latest 2> /dev/null)" == "" ]]; then
     cd ../hadoop-namenode/ && ./buildImage.sh b0 
 fi
