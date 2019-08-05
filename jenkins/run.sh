@@ -13,3 +13,6 @@ docker run -p 8080:8080 -p 50000:50000 --restart always --name jenkins --net b0 
 #exit
 #docker restart jenkins
 
+
+#install maven
+#apt-get install maven
