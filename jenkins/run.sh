@@ -13,6 +13,9 @@ docker run -p 8080:8080 -p 50000:50000 --restart always --name jenkins --net b0 
 #exit
 #docker restart jenkins
 
+#or use another waiy upgrade
+#All the data needed is in the /var/jenkins_home directory - so depending on how you manage that - depends on how you upgrade. Generally - you can copy it out - and then "docker pull" the image again - and you will have the latest LTS - you can then start up with -v pointing to that data (/var/jenkins_home) and everything will be as you left it.
+
 
 #install maven
 #apt-get install maven
