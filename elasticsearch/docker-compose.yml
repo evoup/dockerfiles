@@ -3,11 +3,13 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
     container_name: elasticsearch
+    hostname: elasticsearch
     environment:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true #disable http authorization!
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch,elasticsearch2,elasticsearch3"
     ulimits:
       memlock:
         soft: -1
@@ -22,12 +24,13 @@ services:
   elasticsearch2:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
     container_name: elasticsearch2
+    hostname: elasticsearch2
     environment:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch,elasticsearch2,elasticsearch3"
     ulimits:
       memlock:
         soft: -1
@@ -36,11 +39,31 @@ services:
       - esdata2:/usr/share/elasticsearch/data
     networks:
       - esnet
+  elasticsearch3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    container_name: elasticsearch3
+    hostname: elasticsearch3
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch,elasticsearch2,elasticsearch3"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata3:/usr/share/elasticsearch/data
+    networks:
+      - esnet
 
 volumes:
   esdata1:
     driver: local
   esdata2:
+    driver: local
+  esdata3:
     driver: local
 
 networks:
