@@ -13,4 +13,5 @@ docker exec datanode1 bash -c "rpm -ivh http://${docker_host_ip}:${local_port}/p
 docker exec datanode1 env COMPRESSION=NONE JAVA_HOME=/usr/lib/jvm/java HBASE_HOME=/usr/lib/hbase /usr/share/opentsdb/tools/create_table.sh
 docker exec datanode1 sh -c "echo \"tsd.storage.hbase.zk_quorum = \"zk1,zk2,zk3\"\" >> /etc/opentsdb/opentsdb.conf"
 docker exec datanode1 sh -c "echo \"tsd.core.auto_create_metrics = true\" >> /etc/opentsdb/opentsdb.conf"
+docker exec datanode1 sh -c "echo \"tsd.core.tag.allow_specialchars = \!@#$%^&*()_+{}|: <>?~-=[]\;',./°\" >> /etc/opentsdb/opentsdb.conf"
 docker exec datanode1 sh -c "/etc/init.d/opentsdb start"
