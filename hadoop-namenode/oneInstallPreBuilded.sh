@@ -25,4 +25,5 @@ cd $dir
 . include/installAddon.sh
 . include/startHbaseNode.sh
 . include/installOpenTsdb.sh
+docker stop pkgrepo cdh5repo
 echo "done"
