@@ -3,9 +3,9 @@ dir=$PWD
 echo "create network"
 docker network create --subnet=172.18.0.0/16 b0
 echo "init zk"
-docker run --name zk1 --privileged=true -p28050:18050  -ti -d --ip 172.18.0.50 --net b0 --hostname zk1 evoup/zookeeper 1
-docker run --name zk2 --privileged=true -p28051:18050  -ti -d --ip 172.18.0.51 --net b0 --hostname zk2 evoup/zookeeper 2
-docker run --name zk3 --privileged=true -p28052:18050  -ti -d --ip 172.18.0.52 --net b0 --hostname zk3 evoup/zookeeper 3
+docker run --name zk1 --privileged=true -p2181:2181 -p28050:18050  -ti -d --ip 172.18.0.50 --net b0 --hostname zk1 evoup/zookeeper 1
+docker run --name zk2 --privileged=true -p2182:2181 -p28051:18050  -ti -d --ip 172.18.0.51 --net b0 --hostname zk2 evoup/zookeeper 2
+docker run --name zk3 --privileged=true -p2183:2181 -p28052:18050  -ti -d --ip 172.18.0.52 --net b0 --hostname zk3 evoup/zookeeper 3
 echo "init cdh5 repo"
 docker run -tid -p32770:80 --rm --net b0 --hostname cdh5repo --name cdh5repo evoup/cdh5repo
 echo "init yum pkg repo server"
