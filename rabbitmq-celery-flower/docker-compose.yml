@@ -3,7 +3,7 @@ services:
 
   flower:
     image: zoomeranalytics/flower:0.9.1-4.0.2
-    restart: "no"
+    restart: "always"
     env_file:
       - env.env
     ports:
@@ -13,6 +13,7 @@ services:
 
   broker:
     image: rabbitmq:3
+    restart: "always"
     env_file:
       - env.env
     ports:
