@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+
+  flower:
+    image: zoomeranalytics/flower:0.9.1-4.0.2
+    restart: "no"
+    env_file:
+      - env.env
+    ports:
+      - "5555:5555"
+    depends_on:
+      - broker
+
+  broker:
+    image: rabbitmq:3
+    env_file:
+      - env.env
+    ports:
+      - 5672:5672
