@@ -37,6 +37,9 @@ services:
         hard: -1
     volumes:
       - esdata2:/usr/share/elasticsearch/data
+    ports:
+      - 9201:9200
+      - 9301:9300
     networks:
       - esnet
   elasticsearch3:
@@ -55,6 +58,9 @@ services:
         hard: -1
     volumes:
       - esdata3:/usr/share/elasticsearch/data
+    ports:
+      - 9202:9200
+      - 9302:9300
     networks:
       - esnet
 
