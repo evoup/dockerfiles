@@ -14,3 +14,11 @@ docker-compose up --scale taskmanager=<N>
 ```
 
 管理界面的地址localhost:8081
+
+
+如果要集成kafka作为source，可以设置kafaka的主机名，这样就不用总是改ip了，就用
+
+```bash
+extra_hosts:
+ - "kafka:172.16.30.220"
+```
