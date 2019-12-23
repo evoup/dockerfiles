@@ -12,3 +12,5 @@ docker-compose scale taskmanager=<N>
 ```bash
 docker-compose up --scale taskmanager=<N>
 ```
+
+管理界面的地址localhost:8081
