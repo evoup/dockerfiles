@@ -2,7 +2,7 @@ first edit config.json
 
 then run:
 ```
-docker build -t evoup/v2ray .
+docker build -t evoup/v2ray_client .
 ```
 at last,run:
 ```
