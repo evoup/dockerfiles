@@ -1,7 +1,7 @@
 version: '2.2'
 services:
   elasticsearch:
-    image: evoup/elasticsearch:6.8.0
+    image: evoup/elasticsearch:6.8.8
     container_name: elasticsearch
     hostname: elasticsearch
     environment:
@@ -22,7 +22,7 @@ services:
     networks:
       - esnet
   elasticsearch2:
-    image: evoup/elasticsearch:6.8.0
+    image: evoup/elasticsearch:6.8.8
     container_name: elasticsearch2
     hostname: elasticsearch2
     environment:
@@ -43,7 +43,7 @@ services:
     networks:
       - esnet
   elasticsearch3:
-    image: evoup/elasticsearch:6.8.0
+    image: evoup/elasticsearch:6.8.8
     container_name: elasticsearch3
     hostname: elasticsearch3
     environment:
@@ -64,7 +64,7 @@ services:
     networks:
       - esnet
   kibana:
-    image: evoup/kibana:6.8.0
+    image: evoup/kibana:6.8.8
     container_name: kibana
     hostname: kibana
     links:
