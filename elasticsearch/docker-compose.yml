@@ -14,8 +14,8 @@ services:
       memlock:
         soft: -1
         hard: -1
-    volumes:
-      - esdata1:/usr/share/elasticsearch/data
+    #volumes:
+      #- esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
       - 9300:9300
@@ -35,8 +35,8 @@ services:
       memlock:
         soft: -1
         hard: -1
-    volumes:
-      - esdata2:/usr/share/elasticsearch/data
+    #volumes:
+      #- esdata2:/usr/share/elasticsearch/data
     ports:
       - 9201:9200
       - 9301:9300
@@ -56,8 +56,8 @@ services:
       memlock:
         soft: -1
         hard: -1
-    volumes:
-      - esdata3:/usr/share/elasticsearch/data
+    #volumes:
+      #- esdata3:/usr/share/elasticsearch/data
     ports:
       - 9202:9200
       - 9302:9300
