@@ -24,7 +24,7 @@ services:
       environment:
         - DB_CONFIG=172.16.25.155:8888
       ports:
-        - 8888:8888
+        - 5000:5000
 
 
 networks:
