@@ -15,6 +15,7 @@ services:
       - 8888:8888
     networks:
       - ssdb-net
+    restart: always
 
 networks:
   ssdb-net:
