@@ -18,6 +18,15 @@ services:
       - ssdb-net
     restart: always
 
+  ssdb-admin:
+      image: jhao104/ssdb-admin
+      container_name: ssdb-admin
+      environment:
+        - DB_CONFIG: 172.16.25.155:8888
+      ports:
+        - 8888:8888
+
+
 networks:
   ssdb-net:
     driver: bridge
