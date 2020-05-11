@@ -22,7 +22,7 @@ services:
       image: jhao104/ssdb-admin
       container_name: ssdb-admin
       environment:
-        - DB_CONFIG: 172.16.25.155:8888
+        - DB_CONFIG=172.16.25.155:8888
       ports:
         - 8888:8888
 
