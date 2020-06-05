@@ -2,18 +2,34 @@ version: '3'
 
 services:
 
-  ssdb:
+  ssdb0:
     image: evoup/ssdb
-    container_name: ssdb
+    container_name: ssdb0-localhost
     #build:
       #context: .
       #dockerfile: ./Dockerfile
     # command: /ssdb/ssdb-server /ssdb/ssdb.conf
     volumes:
-      - ./volumes/ssdb/data:/ssdb/var
+      - ./volumes/ssdb0/data:/ssdb/var
       # - ./configs/ssdb/ssdb.conf:/ssdb/ssdb.conf:ro
     ports:
       - 8888:8888
+    networks:
+      - ssdb-net
+    restart: always
+
+  ssdb1:
+    image: evoup/ssdb
+    container_name: ssdb1-localhost
+    #build:
+      #context: .
+      #dockerfile: ./Dockerfile
+    # command: /ssdb/ssdb-server /ssdb/ssdb.conf
+    volumes:
+      - ./volumes/ssdb1/data:/ssdb/var
+      # - ./configs/ssdb/ssdb.conf:/ssdb/ssdb.conf:ro
+    ports:
+      - 8889:8888
     networks:
       - ssdb-net
     restart: always
@@ -22,10 +38,12 @@ services:
     image: jhao104/ssdb-admin
     container_name: ssdb-admin
     environment:
-      - DB_CONFIG=172.17.0.1:8888
+        - DB_CONFIG=ssdb0-localhost:8888,ssdb1-localhost:8888
     ports:
       - 5000:5000
     restart: always
+    networks:
+      - ssdb-net
 
 
 networks:
