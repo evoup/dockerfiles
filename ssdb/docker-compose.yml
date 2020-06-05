@@ -19,12 +19,13 @@ services:
     restart: always
 
   ssdb-admin:
-      image: jhao104/ssdb-admin
-      container_name: ssdb-admin
-      environment:
-        - DB_CONFIG=172.16.25.155:8888
-      ports:
-        - 5000:5000
+    image: jhao104/ssdb-admin
+    container_name: ssdb-admin
+    environment:
+      - DB_CONFIG=172.17.0.1:8888
+    ports:
+      - 5000:5000
+    restart: always
 
 
 networks:
