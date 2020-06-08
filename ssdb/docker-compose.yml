@@ -38,7 +38,7 @@ services:
     image: jhao104/ssdb-admin
     container_name: ssdb-admin
     environment:
-        - DB_CONFIG=ssdb0-localhost:8888,ssdb1-localhost:8888
+        - DB_CONFIG=ssdb0-localhost:8888,ssdb1-localhost:8889
     ports:
       - 5000:5000
     restart: always
