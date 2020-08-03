@@ -6,6 +6,8 @@ services:
     hostname: elasticsearch
     environment:
       - cluster.name=docker-cluster
+      - http.max_initial_line_length="8k"
+      - http.max_header_size="16k"
       - bootstrap.memory_lock=true #disable http authorization!
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -27,6 +29,8 @@ services:
     hostname: elasticsearch2
     environment:
       - cluster.name=docker-cluster
+      - http.max_initial_line_length="8k"
+      - http.max_header_size="16k"
       - bootstrap.memory_lock=true
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -48,6 +52,8 @@ services:
     hostname: elasticsearch3
     environment:
       - cluster.name=docker-cluster
+      - http.max_initial_line_length="8k"
+      - http.max_header_size="16k"
       - bootstrap.memory_lock=true
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
