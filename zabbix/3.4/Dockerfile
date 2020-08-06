@@ -20,11 +20,11 @@ RUN yum -y clean all
 RUN yum -y groupinstall "Development Tools" "Development Libraries"
 RUN rpm -Uvh https://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
 RUN yum -y update
-RUN yum install -y curl curl-devel net-snmp snmp net-snmp-devel perl-DBI php-gd php-xml php-bcmath php-mbstring
-RUN yum install -y mysql-server mysql-devel java-1.8.0-openjdk-devel
-RUN yum install -y zabbix22-server-mysql zabbix22-web-mysql
-RUN yum install -y zabbix22-agent
-RUN yum install -y zabbix-java-gateway
+#RUN yum install -y curl curl-devel net-snmp snmp net-snmp-devel perl-DBI php-gd php-xml php-bcmath php-mbstring
+#RUN yum install -y mysql-server mysql-devel java-1.8.0-openjdk-devel
+#RUN yum install -y zabbix22-server-mysql zabbix22-web-mysql
+#RUN yum install -y zabbix22-agent
+#RUN yum install -y zabbix-java-gateway
 
 RUN echo 'root:centos' |chpasswd
 RUN service sshd start
@@ -60,7 +60,7 @@ RUN echo "Port 2122" >> /etc/ssh/sshd_config
 # starting ssh on port 2122 in order to support --net=host
 
 
-RUN mkdir -p /services/software/
+#RUN mkdir -p /services/software/
 #RUN wget https://nchc.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.2.20/zabbix-2.2.20.tar.gz -O /services/software/zabbix-2.2.20.tar.gz
 #RUN cd /services/software && tar xzf zabbix-2.2.20.tar.gz
 #Other ports
@@ -71,6 +71,6 @@ EXPOSE 80 2122
 ADD files/hosts /tmp/hosts
 
 ADD files/start.sh /start.sh
-ADD files/php.ini /etc/php.ini
+#ADD files/php.ini /etc/php.ini
 RUN chmod +x /start.sh
 ENTRYPOINT ["/start.sh"]
