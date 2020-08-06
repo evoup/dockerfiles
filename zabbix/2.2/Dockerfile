@@ -1,7 +1,7 @@
 # Run zabbix2.2 in a container
 #
 #(alternative)docker network create --subnet=172.18.0.0/16 b0
-#docker run --privileged=true --name zabbix -P -p8010:80 -p2209:22 -p10051:10051 -ti -d --ip 172.18.0.56 --net b0 --hostname zabbix evoup/zabbix
+#docker run --privileged=true --name zabbix -P -p8010:80 -p2209:22 -p10051:10051 -ti -d --ip 172.18.0.56 --net b0 --hostname zabbix evoup/zabbix:2.2
 #after run,visit localhost:8010/zabbix,run setup, then use Admin/zabbix account to login. BTW: may be take a few time to init mysql data.
 #for using aliyun yum mirror: docker build -t evoup/zabbix --build-arg use_yum_mirror=1 .
 #for default such as dockerhub automation: docker build -t evoup/zabbix .
