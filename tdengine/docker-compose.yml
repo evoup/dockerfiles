@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  tdengine0:
+    image: evoup/tdengine:2.0.3.1
+    container_name: tdengine0
+    volumes:
+      - ./log:/var/log/taos
+      - ./db:/var/lib/taos
+    ports:
+      - 6030:6030
+      - 6020:6020
+      - 6031:6031
+      - 6032:6032
+      - 6033:6033
+      - 6034:6034
+      - 6035:6035
+      - 6036:6036
+      - 6037:6037
+      - 6038:6038
+      - 6039:6039
+    restart: always
+
