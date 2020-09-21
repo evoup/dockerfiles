@@ -3,6 +3,10 @@ version: '3'
 services:
 
   tdengine0:
+    # first build from run.sh
+    #build:
+      #context: ./
+      #dockerfile: ./Dockerfile
     image: evoup/tdengine:2.0.3.1
     container_name: tdengine0
     volumes:
@@ -24,4 +28,5 @@ services:
       - 6041:6041
       - 6042:6042
     restart: always
+    network_mode: host
 
