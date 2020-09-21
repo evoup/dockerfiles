@@ -7,6 +7,7 @@ COPY src/ ./src/
 COPY deps/ ./deps/
 COPY packaging/ ./packaging/
 COPY CMakeLists.txt ./
+COPY tests/ ./tests/
 
 RUN yum update -y
 
