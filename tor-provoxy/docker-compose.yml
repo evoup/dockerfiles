@@ -91,5 +91,59 @@ services:
         ports:
             - "8129:8118"
 
+    tor_au: # 澳大利亚
+        container_name: tor_au
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/au/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8130:8118"
+
+    tor_ca: # 加拿大
+        container_name: tor_ca
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/ca/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8131:8118"
+
+    tor_de: # 德国
+        container_name: tor_de
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/de/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8132:8118"
+
+    tor_gb: # 英国
+        container_name: tor_gb
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/gb/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8133:8118"
+
+    tor_nz: # 新西兰
+        container_name: tor_nz
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/nz/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8134:8118"
+
+    tor_vn: # 越南
+        container_name: tor_vn
+        image: rdsubhas/tor-privoxy-alpine
+        volumes:
+            - ./country/vn/torrc:/etc/service/tor/torrc
+        restart: always
+        ports:
+            - "8135:8118"
+
 volumes:
     tor_data_volume:
