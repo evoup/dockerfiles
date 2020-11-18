@@ -7,7 +7,7 @@ services:
     #build:
       #context: ./
       #dockerfile: ./Dockerfile
-    image: evoup/tdengine:2.0.3.1
+    image: evoup/tdengine:2.0.4.0
     container_name: tdengine0
     volumes:
       - ./log:/var/log/taos
