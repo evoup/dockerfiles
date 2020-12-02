@@ -1,9 +1,9 @@
 #!/bin/sh
-wget https://codeload.github.com/taosdata/TDengine/zip/ver-2.0.4.0
-unzip ver-2.0.4.0
-cp Dockerfile TDengine-ver-2.0.4.0
-cd TDengine-ver-2.0.4.0
-docker build -t evoup/tdengine:2.0.4.0 .
+wget https://codeload.github.com/taosdata/TDengine/zip/ver-2.0.8.0
+unzip ver-2.0.8.0
+cp Dockerfile TDengine-ver-2.0.8.0
+cd TDengine-ver-2.0.8.0
+docker build -t evoup/tdengine:2.0.8.0 .
 
 
 #目前没有磁盘用量统计，后续会加。我们的数据默认存放在/var/lib/taos目录下，您可通过du -sh /var/lib/taos查看该文件夹的占用空间。不过这个空间并不完全准确，因为tdengine服务默认会在每个vnode中占用一个log文件，是WAL的日志文件，这个文件大小是固定的，正常关闭服务后这个文件会被删除。因此比较准确的空间统计是在正常停止TDengine服务后运行du -sh /var/lib/taos.
