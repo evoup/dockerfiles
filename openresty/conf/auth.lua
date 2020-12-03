@@ -11,8 +11,18 @@ function gen_server_token(method, now_time, path)
     local data = method .. separator .. now_time .. separator .. path
     return data
 end
-local token = gen_server_token('POST', 123, '/scrapyd/api')
-ngx.say('user-agent is:', headers['user-agent'])
-ngx.say('server token is:', token)
-ngx.say("hmac_sha1: ", hmac_sha1:final(token, true))
-return ngx.exit(403);
+if headers['Date'] == nil then
+    return ngx.exit(403);
+end
+local message = gen_server_token(ngx.req.get_method(), headers['Date'], ngx.var.request_uri)
+local token = ngx.encode_base64(hmac_sha1:final(token, false))
+--ngx.say('user-agent is:', headers['user-agent'])
+--ngx.say('Authorization:', headers['Authorization'])
+if headers['Authorization'] == nil then
+    return ngx.exit(403);
+end
+
+if headers['Authorization'] ~= token then
+    return ngx.exit(403);
+end
+
