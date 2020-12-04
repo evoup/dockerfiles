@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+    openresty0:
+        image: openresty/openresty:alpine
+        container_name: openresty0
+        volumes:
+            - ./conf/:/etc/nginx/conf.d/
+        ports:
+            - 8004:80
+        restart: always
+
