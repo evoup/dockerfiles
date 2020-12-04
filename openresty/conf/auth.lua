@@ -15,9 +15,14 @@ if headers['Date'] == nil then
     return ngx.exit(403);
 end
 local message = gen_server_token(ngx.req.get_method(), headers['Date'], ngx.var.request_uri)
-local token = ngx.encode_base64(hmac_sha1:final(token, false))
+local token = ngx.encode_base64(hmac_sha1:final(message, false))
 --ngx.say('user-agent is:', headers['user-agent'])
 --ngx.say('Authorization:', headers['Authorization'])
+--ngx.log(ngx.ERR, 'method:', ngx.req.get_method())
+--ngx.log(ngx.ERR, 'message:', message)
+--ngx.log(ngx.ERR, 'uri:', ngx.var.request_uri)
+--ngx.log(ngx.ERR, 'Authorization:', headers['Authorization'])
+--ngx.log(ngx.ERR, 'token:', token)
 if headers['Authorization'] == nil then
     return ngx.exit(403);
 end
