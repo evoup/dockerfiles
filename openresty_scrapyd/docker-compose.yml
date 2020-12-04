@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
     openresty0:
         image: openresty/openresty:alpine
         container_name: openresty0
@@ -10,4 +9,14 @@ services:
         ports:
             - 8004:80
         restart: always
+
+    scrapyd0:
+        image: vimagick/scrapyd:py3
+        container_name: scrapyd0
+        ports:
+        - "6800:6800"
+    volumes:
+        - ./data:/var/lib/scrapyd
+        - /usr/local/lib/python3.7/dist-packages
+    restart: unless-stopped
 
