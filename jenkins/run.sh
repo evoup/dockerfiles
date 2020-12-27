@@ -1,6 +1,6 @@
 #!/bin/sh
-
-docker run -d -p 8080:8080 -p 50000:50000 --restart always --name jenkins --net b0 --hostname jenkins -v /volume1/jenkinsHome/:/var/jenkins_home evoup/jenkins
+mkdir jenkinsHome
+docker run -d -p 8080:8080 -p 50000:50000 --restart always --name jenkins --hostname jenkins -v ${PWD}/jenkinsHome/:/var/jenkins_home evoup/jenkins
 
 #note must update jenkins to lastest version, otherwise can not run
 #https://medium.com/@jimkang/how-to-start-a-new-jenkins-container-and-update-jenkins-with-docker-cf628aa495e9
